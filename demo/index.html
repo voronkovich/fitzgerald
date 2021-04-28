@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Modest popup</title>
+        <link rel="stylesheet" href="../dist/modest-popup.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    </head>
+    <body>
+        <a href="#hello">Open modal</a>
+        <template id="hello-modal">
+            <button class="modest-popup-hide" data-modest-popup-hide>&times;</button>
+            <h1>Lorem ipsum dolor sit amet!</h1>
+            <p>Dolor sit amet</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </template>
+        <script src="../dist/modest-popup.min.js"></script>
+        <script>
+            const modal = ModestPopup.modal({
+                id: 'hello-modal',
+                class: 'hello-modal',
+                content: document.querySelector('#hello-modal'),
+                hash: '#hello',
+                style: {
+                    backdropOpacity: 0.7,
+                    backdropBackground: '#000000',
+                },
+                aria: {
+                    labelledBySelector: 'h1',
+                    describedBySelector: 'p',
+                },
+                animate: {
+                    root: {
+                        show: 'animate__animated animate__fadeIn',
+                        hide: 'animate__animated animate__fadeOut',
+                    },
+                    content: {
+                        show: 'animate__animated animate__bounceInDown',
+                        hide: 'animate__animated animate__fadeOutLeft',
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

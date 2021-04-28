@@ -1,0 +1,154 @@
+import { createModalFactory } from '../src/modal.js'
+
+describe('createModalFactory', () => {
+    it('allows to use plugins', () => {
+        let fooUsed = false
+        let barUsed = false
+
+        const factory = createModalFactory([{
+            key: 'foo',
+            callable: () => {
+                fooUsed = true
+            },
+        }])
+
+        factory.plugin({
+            key: 'bar',
+            callable: () => {
+                barUsed = true
+            },
+        })
+
+        factory.modal({
+            foo: 'foo',
+            bar: 'bar',
+        })
+
+        expect(fooUsed).toBe(true)
+        expect(barUsed).toBe(true)
+    })
+
+    it('passes modal instance and plugin options to plugin callable', () => {
+        let fooOptions
+        let fooModal
+
+        const factory = createModalFactory([{
+            key: 'foo',
+            callable: (modal, options) => {
+                fooOptions = options
+                fooModal = modal
+            },
+        }])
+
+        const modal = factory.modal({
+            foo: 'foo'
+        })
+
+        expect(fooOptions).toBe('foo')
+        expect(fooModal).toBe(modal)
+    })
+})
+
+describe('Modal', () => {
+    it('is hidden by default', () => {
+        const factory = createModalFactory()
+
+        const modal = factory.modal()
+
+        expect(modal.isHidden()).toBe(true)
+        expect(modal.isVisible()).toBe(false)
+    })
+
+    it('shows popup', async () => {
+        const factory = createModalFactory()
+
+        const modal = factory.modal()
+        await modal.show()
+
+        expect(modal.root.style.visibility).toBe('visible')
+        expect(modal.isVisible()).toBe(true)
+        expect(modal.isHidden()).toBe(false)
+    })
+
+    it('emits event before showing popup', async () => {
+        let firedBefore = false
+
+        const modal = createModalFactory().modal()
+
+        modal.on('show:before', () => {
+            firedBefore = modal.isHidden()
+        })
+
+        await modal.show()
+
+        expect(firedBefore).toBe(true)
+    })
+
+    it('emits event after showing popup', async () => {
+        let firedAfter = false
+
+        const modal = createModalFactory().modal()
+
+        modal.on('show', () => {
+            firedAfter = modal.isVisible()
+        })
+
+        await modal.show()
+
+        expect(firedAfter).toBe(true)
+    })
+
+    it('hides popup', async () => {
+        const factory = createModalFactory()
+
+        const modal = factory.modal()
+
+        await modal.show()
+
+        expect(modal.isVisible()).toBe(true)
+
+        await modal.hide()
+
+        expect(modal.root.style.visibility).toBe('hidden')
+        expect(modal.isVisible()).toBe(false)
+        expect(modal.isHidden()).toBe(true)
+    })
+
+    it('emits event before hiding popup', async () => {
+        let firedBefore = false
+
+        const modal = createModalFactory().modal()
+
+        modal.on('hide:before', () => {
+            firedBefore = modal.isVisible()
+        })
+
+        await modal.show()
+
+        await modal.hide()
+
+        expect(firedBefore).toBe(true)
+    })
+
+    it('emits event after hiding popup', async () => {
+        let firedAfter = false
+
+        const modal = createModalFactory().modal()
+
+        modal.on('hide', () => {
+            firedAfter = modal.isHidden()
+        })
+
+        await modal.show()
+
+        await modal.hide()
+
+        expect(firedAfter).toBe(true)
+    })
+
+    it('is frozen', () => {
+        const modal = createModalFactory().modal()
+
+        expect(Object.isFrozen(modal)).toBe(true)
+    })
+})
