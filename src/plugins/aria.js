@@ -9,8 +9,8 @@ export default (modal, options) => {
         modal: true,
         hidden: false,
         label: null,
-        labelledBySelector: '[data-modest-popup-aria-labelledby]',
-        describedBySelector: '[data-modest-popup-aria-describedby]',
+        labelledBySelector: '[data-fitz-aria-labelledby]',
+        describedBySelector: '[data-fitz-aria-describedby]',
     }, options)
 
     if (opts.role) {
@@ -76,7 +76,7 @@ let counter = 0
 
 const getElementId = (element) => {
     if (!element.id) {
-        element.id = `modest-popup-aria-${counter++}`
+        element.id = `fitz-aria-${counter++}`
     }
 
     return element.id

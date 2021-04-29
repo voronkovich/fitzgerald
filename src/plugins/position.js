@@ -21,7 +21,7 @@ export default (modal, options) => {
         }
 
         modal.root.style.setProperty(
-            '--modest-popup-align-vertical',
+            '--fitz-align-vertical',
             vertical[options.vertical]
         )
     }
@@ -32,7 +32,7 @@ export default (modal, options) => {
         }
 
         modal.root.style.setProperty(
-            '--modest-popup-align-horizontal',
+            '--fitz-align-horizontal',
             horizontal[options.horizontal]
         )
     }

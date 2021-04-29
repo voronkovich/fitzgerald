@@ -4,7 +4,7 @@ export default (modal, options = {}) => {
     }
 
     const opts = Object.assign({
-        focusSelector: '[data-modest-popup-focus]'
+        focusSelector: '[data-fitz-focus]'
     }, options)
 
     let previousActiveElement

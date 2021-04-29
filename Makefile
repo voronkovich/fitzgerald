@@ -1,9 +1,9 @@
 .PHONY: dist
-dist: dist/modest-popup.min.js dist/modest-popup.min.css
+dist: dist/fitzgerald.min.js dist/fitzgerald.min.css
 
 .PHONY: lint
 lint:
-	npx eslint src/
+	npx eslint src/ tests/
 
 .PHONY: lint-fix
 lint-fix:
@@ -17,18 +17,18 @@ test:
 clean:
 	rm -rf dist/
 
-dist/modest-popup.min.js:
+dist/fitzgerald.min.js:
 	npx esbuild \
 		--bundle \
 		--target=es2017 \
 		--minify \
-		--global-name=ModestPopup \
-		--outfile=dist/modest-popup.min.js \
+		--global-name=Fitz \
+		--outfile=dist/fitzgerald.min.js \
 		src/index.js
 
-dist/modest-popup.min.css:
+dist/fitzgerald.min.css:
 	npx esbuild \
 		--bundle \
 		--minify \
-		--outfile=dist/modest-popup.min.css \
+		--outfile=dist/fitzgerald.min.css \
 		src/style.css

@@ -4,7 +4,7 @@ export default (modal, options) => {
     }
 
     for (const [key, value] of Object.entries(options)) {
-        const property = `--modest-popup-${snakeCase(key, '-')}`
+        const property = `--fitz-${snakeCase(key, '-')}`
 
         modal.root.style.setProperty(property, value)
     }

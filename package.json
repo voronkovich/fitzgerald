@@ -1,5 +1,5 @@
 {
-    "name": "modest-popup",
+    "name": "fitzgerald",
     "version": "0.0.0",
     "devDependencies": {
         "esbuild": "^0.11.12",
@@ -11,12 +11,9 @@
     "dependencies": {},
     "description": "Simple, modest popup",
     "main": "src/index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/voronkovich/modest-popup.git"
+        "url": "git+https://github.com/voronkovich/fitzgerald.git"
     },
     "keywords": [
         "popup",
@@ -25,7 +22,7 @@
     "author": "Oleg Voronkovich",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/voronkovich/modest-popup/issues"
+        "url": "https://github.com/voronkovich/fitzgerald/issues"
     },
-    "homepage": "https://github.com/voronkovich/modest-popup#readme"
+    "homepage": "https://github.com/voronkovich/fitzgerald#readme"
 }

@@ -4,7 +4,7 @@ export default (modal, options = {}) => {
     }
 
     const opts = Object.assign({
-        hideSelector: '[data-modest-popup-hide]',
+        hideSelector: '[data-fitz-hide]',
         onBackdropClick: true,
         onEscape: true,
     }, options)

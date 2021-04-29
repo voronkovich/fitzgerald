@@ -105,7 +105,7 @@ export const createModal = () => {
 const createRootElement = () => {
     const root = document.createElement('div')
 
-    root.className = 'modest-popup'
+    root.className = 'fitz'
 
     Object.assign(root.style, {
         zIndex: maxZIndex() + 1,
@@ -118,7 +118,7 @@ const createRootElement = () => {
 const createBackdropElement = () => {
     const backdrop = document.createElement('div')
 
-    backdrop.className = 'modest-popup-backdrop'
+    backdrop.className = 'fitz-backdrop'
 
     return backdrop
 }
@@ -126,7 +126,7 @@ const createBackdropElement = () => {
 const createContentElement = () => {
     const content = document.createElement('div')
 
-    content.className = 'modest-popup-content'
+    content.className = 'fitz-content'
 
     return content
 }

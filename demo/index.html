@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Modest popup</title>
-        <link rel="stylesheet" href="../dist/modest-popup.min.css" type="text/css" media="all" />
+        <title>Fitz</title>
+        <link rel="stylesheet" href="../dist/fitz.min.css" type="text/css" media="all" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     </head>
     <body>
         <a href="#hello">Open modal</a>
         <template id="hello-modal">
-            <button class="modest-popup-hide" data-modest-popup-hide>&times;</button>
+            <button class="fitz-hide" data-fitz-hide>&times;</button>
             <h1>Lorem ipsum dolor sit amet!</h1>
             <p>Dolor sit amet</p>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         </template>
-        <script src="../dist/modest-popup.min.js"></script>
+        <script src="../dist/fitz.min.js"></script>
         <script>
-            const modal = ModestPopup.modal({
+            const modal = Fitz.modal({
                 id: 'hello-modal',
                 class: 'hello-modal',
                 content: document.querySelector('#hello-modal'),
