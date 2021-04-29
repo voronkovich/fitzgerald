@@ -34,7 +34,7 @@ import 'fitzgerald/src/style.css'
 Also you can just include JS script and CSS file into your HTML page:
 ```html
 <link href="https://cdn.jsdelivr.net/npm/fitzgerald/dist/fitzgerald.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fitzgerald/dist/fitzgerald.min.js">
+<script src="https://cdn.jsdelivr.net/npm/fitzgerald/dist/fitzgerald.min.js"></script>
 ```
 
 ## Usage example
