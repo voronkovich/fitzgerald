@@ -1,11 +1,9 @@
-export default (modal, options = {}) => {
-    if (false === options) {
+export default (modal, focus) => {
+    if (false === focus) {
         return
     }
 
-    const opts = Object.assign({
-        focusSelector: '[data-fitz-focus]'
-    }, options)
+    focus = focus || '[data-fitz-focus]'
 
     let previousActiveElement
 
@@ -20,7 +18,7 @@ export default (modal, options = {}) => {
     }
 
     const getFocusTarget = () => {
-        return modal.content.querySelector(opts.focusSelector) || modal.content
+        return modal.content.querySelector(focus) || modal.content
     }
 
     modal.content.tabIndex = -1

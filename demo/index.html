@@ -4,18 +4,26 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Fitz</title>
-        <link rel="stylesheet" href="../dist/fitz.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../dist/fitzgerald.min.css" type="text/css" media="all" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     </head>
     <body>
         <a href="#hello">Open modal</a>
+
         <template id="hello-modal">
-            <button class="fitz-hide" data-fitz-hide>&times;</button>
+            <button class="fitz-hide" data-fitz-hide aria-label="Close">&times;</button>
             <h1>Lorem ipsum dolor sit amet!</h1>
             <p>Dolor sit amet</p>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <form>
+                <label>
+                    Enter your name:
+                    <input type="text" name="name" />
+                </label>
+            </form>
         </template>
-        <script src="../dist/fitz.min.js"></script>
+
+        <script src="../dist/fitzgerald.min.js"></script>
         <script>
             const modal = Fitz.modal({
                 id: 'hello-modal',
@@ -26,9 +34,10 @@
                     backdropOpacity: 0.7,
                     backdropBackground: '#000000',
                 },
+                focus: 'input[name="name"]',
                 aria: {
-                    labelledBySelector: 'h1',
-                    describedBySelector: 'p',
+                    labelledBy: 'h1',
+                    describedBy: 'p',
                 },
                 animate: {
                     root: {
@@ -40,6 +49,19 @@
                         hide: 'animate__animated animate__fadeOutLeft',
                     },
                 }
+            })
+
+            modal.root.addEventListener('submit', (e) => {
+                e.preventDefault()
+
+                const name = e.target['name'].value
+                const header = modal.content.querySelector('h1')
+
+                if (!name) {
+                    return
+                }
+
+                header.textContent = `Hello, ${name}!`
             })
         </script>
     </body>

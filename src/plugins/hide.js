@@ -1,27 +1,33 @@
-export default (modal, options = {}) => {
+export default (modal, options) => {
     if (false === options) {
         return
     }
 
+    if ('string' === typeof options) {
+        options = {
+            click: options,
+        }
+    }
+
     const opts = Object.assign({
-        hideSelector: '[data-fitz-hide]',
-        onBackdropClick: true,
-        onEscape: true,
+        click: '[data-fitz-hide]',
+        backdrop: true,
+        escape: true,
     }, options)
 
-    if (opts.hideSelector) {
+    if (opts.click) {
         modal.root.addEventListener('click', (e) => {
-            if (e.target.closest(opts.hideSelector)) {
+            if (e.target.closest(opts.click)) {
                 modal.hide()
             }
         })
     }
 
-    if (opts.onBackdropClick) {
+    if (opts.backdrop) {
         modal.backdrop.addEventListener('click', modal.hide)
     }
 
-    if (opts.onEscape) {
+    if (opts.escape) {
         modal.root.addEventListener('keyup', (e) => {
             if (27 === e.keyCode) {
                 modal.hide()
