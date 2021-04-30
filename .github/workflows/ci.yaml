@@ -1,0 +1,17 @@
+name: 'CI'
+on:
+    - push
+    - pull_request
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - run: npm install
+            - run: make test
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - run: npm install
+            - run: make lint
