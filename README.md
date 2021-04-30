@@ -41,7 +41,7 @@ Also you can just include JS script and CSS file into your HTML page:
 
 Browser:
 
-```js
+```html
 <script>
 const popup = Fitz.modal('Hey!')
 
@@ -241,7 +241,7 @@ popup.show()
 Creating the [focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7) is not an easy task, so this package doesn't support this feature out of the box. But, you could use any third-party package like [focus-trap](https://github.com/focus-trap/focus-trap) to implement such feature:
 
 ```js
-import { focusTrap } from 'focus-trap'
+import { createFocusTrap } from 'focus-trap'
 import { modal, plugin } from 'fitzgerald'
 import 'fitzgerald/src/style.css'
 
