@@ -1,6 +1,20 @@
 {
     "name": "fitzgerald",
+    "description": "Simple, modest popup",
+    "keywords": [ "popup", "modal" ],
     "version": "0.0.0",
+    "author": "Oleg Voronkovich",
+    "homepage": "https://github.com/voronkovich/fitzgerald#readme",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/voronkovich/fitzgerald.git"
+    },
+    "bugs": {
+        "url": "https://github.com/voronkovich/fitzgerald/issues"
+    },
+    "main": "src/index.js",
+    "dependencies": {},
     "devDependencies": {
         "esbuild": "^0.11.12",
         "esbuild-jest": "^0.5.0",
@@ -8,21 +22,8 @@
         "eslint-plugin-jest": "^24.3.5",
         "jest": "^26.6.3"
     },
-    "dependencies": {},
-    "description": "Simple, modest popup",
-    "main": "src/index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/voronkovich/fitzgerald.git"
-    },
-    "keywords": [
-        "popup",
-        "modal"
-    ],
-    "author": "Oleg Voronkovich",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/voronkovich/fitzgerald/issues"
-    },
-    "homepage": "https://github.com/voronkovich/fitzgerald#readme"
+    "scripts": {
+        "test": "jest",
+        "lint": "eslint src tests"
+    }
 }

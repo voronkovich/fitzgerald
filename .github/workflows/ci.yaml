@@ -1,4 +1,4 @@
-name: 'CI'
+name: CI
 on:
     - push
     - pull_request
@@ -8,10 +8,10 @@ jobs:
         steps:
             - uses: actions/checkout@master
             - run: npm install
-            - run: make test
+            - run: npm run test
     lint:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
             - run: npm install
-            - run: make lint
+            - run: npm run lint
