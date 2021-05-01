@@ -260,6 +260,36 @@ popup.content.addEventListener('submit', (e) => {
 })
 ```
 
+## Methods
+
+* `show()`
+
+  Shows modal
+
+* `hide()`
+
+  Hides modal
+
+* `setContent(content)`
+
+  Sets the modal's content:
+
+  ```javascript
+  const popup = modal()
+
+  popup.setContent('<p>Lorem ipsum...</p>')
+
+  popup.show()
+  ```
+
+* `on(callback)`
+
+  Adds an [event](#events) listener
+  
+* `off(callback)`
+
+  Removes an [event](#events) listener
+
 ## Focus trap
 
 Creating the [focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7) is not an easy task, so this package doesn't support this feature out of the box. But, you could use any third-party package like [focus-trap](https://github.com/focus-trap/focus-trap) to implement such feature:
