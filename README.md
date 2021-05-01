@@ -281,6 +281,16 @@ popup.content.addEventListener('submit', (e) => {
 * `off(event, callback)`
 
   Removes an [event](#events) listener
+
+```javascript
+const popup = modal()
+
+popup.setContent('This popup will be closed after 5 seconds.')
+
+popup.show()
+
+setTimeout(popup.hide, 5000)
+```
   
 ## Events
 
