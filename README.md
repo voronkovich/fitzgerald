@@ -274,21 +274,41 @@ popup.content.addEventListener('submit', (e) => {
 
   Sets the modal's content:
 
-  ```javascript
-  const popup = modal()
-
-  popup.setContent('<p>Lorem ipsum...</p>')
-
-  popup.show()
-  ```
-
-* `on(callback)`
+* `on(event, callback)`
 
   Adds an [event](#events) listener
   
-* `off(callback)`
+* `off(event, callback)`
 
   Removes an [event](#events) listener
+  
+## Events
+
+* `show:before`
+
+  Occurs before showing the modal
+
+* `show`
+
+  Occurs after the modal has been show
+
+* `hide:before`
+
+  Occurs before hiding the modal
+  
+* `hide`
+
+  Occurs after the modal has been hidden
+
+```javascript
+let counter = 0
+
+const popup = modal()
+
+popup.on('show:before', () => {
+    popup.setContent(`You've seen this popup ${++counter} times!`)
+})
+```
 
 ## Focus trap
 
