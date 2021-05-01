@@ -236,7 +236,9 @@ popup.show()
   })
   ```
 
-## Properties
+## Instance API
+
+### Properties
 
 * **root** `HTMLElement`
 
@@ -260,7 +262,7 @@ popup.content.addEventListener('submit', (e) => {
 })
 ```
 
-## Methods
+### Methods
 
 * `show()`
 
@@ -292,7 +294,7 @@ popup.show()
 setTimeout(popup.hide, 5000)
 ```
   
-## Events
+### Events
 
 * `show:before`
 
