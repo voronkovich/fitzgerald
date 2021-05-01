@@ -236,6 +236,30 @@ popup.show()
   })
   ```
 
+## Properties
+
+* **root** `HTMLElement`
+
+  Root element that wraps the backdrop and the modal content container.
+
+* **backdrop** `HTMLElement`
+
+  Backdrop element (overlay).
+
+* **content** `HTMLElement`
+
+  Container for the modal content.
+
+You can use properties to interact with the modal DOM (attach event listeners, add nodes and etc.):
+
+```javascript
+const popup = modal({ /* Options */ })
+
+popup.content.addEventListener('submit', (e) => {
+    // Handle form submit
+})
+```
+
 ## Focus trap
 
 Creating the [focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7) is not an easy task, so this package doesn't support this feature out of the box. But, you could use any third-party package like [focus-trap](https://github.com/focus-trap/focus-trap) to implement such feature:
