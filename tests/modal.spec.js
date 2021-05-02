@@ -50,6 +50,12 @@ describe('createModalFactory', () => {
 })
 
 describe('Modal', () => {
+    it('is frozen', () => {
+        const modal = createModalFactory().modal()
+
+        expect(Object.isFrozen(modal)).toBe(true)
+    })
+
     it('is hidden by default', () => {
         const factory = createModalFactory()
 
@@ -59,7 +65,7 @@ describe('Modal', () => {
         expect(modal.isVisible()).toBe(false)
     })
 
-    describe('Popup showing', () => {
+    describe('Show', () => {
         it('shows popup', async () => {
             const factory = createModalFactory()
 
@@ -111,7 +117,7 @@ describe('Modal', () => {
         })
     })
 
-    describe('Popup hiding', () => {
+    describe('Hide', () => {
         it('hides popup', async () => {
             const factory = createModalFactory()
 
@@ -174,9 +180,30 @@ describe('Modal', () => {
         })
     })
 
-    it('is frozen', () => {
-        const modal = createModalFactory().modal()
+    describe('Destroy', () => {
+        it('emits event', async () => {
+            let fired = false
 
-        expect(Object.isFrozen(modal)).toBe(true)
+            const modal = createModalFactory().modal()
+
+            modal.on('destroy', () => {
+                fired = true
+            })
+
+            await modal.destroy()
+
+            expect(fired).toBe(true)
+        })
+
+        it('returns the same promise instance', async () => {
+            const factory = createModalFactory()
+
+            const modal = factory.modal()
+
+            const promise1 = modal.destroy()
+            const promise2 = modal.destroy()
+
+            expect(promise1).toBe(promise2)
+        })
     })
 })

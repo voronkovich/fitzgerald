@@ -53,6 +53,7 @@ export const createModal = () => {
 
     let showPromise = null
     let hidePromise = null
+    let destroyPromise = null
 
     const modal = {
         root,
@@ -115,8 +116,22 @@ export const createModal = () => {
             return modal.root.style.visibility === 'hidden'
         },
 
+        isDestroyed: () => {
+            return !!destroyPromise
+        },
+
         destroy: () => {
-            root.remove()
+            if (destroyPromise) {
+                return destroyPromise
+            }
+
+            destroyPromise = eventEmitter
+                .emit('destroy')
+                .then(() => {
+                    root.remove()
+                })
+
+            return destroyPromise
         },
     }
 
