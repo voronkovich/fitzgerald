@@ -51,6 +51,9 @@ export const createModal = () => {
 
     const eventEmitter = createEventEmitter()
 
+    let showPromise = null
+    let hidePromise = null
+
     const modal = {
         root,
         backdrop,
@@ -58,32 +61,50 @@ export const createModal = () => {
 
         ...eventEmitter,
 
-        show: async () => {
+        show: () => {
+            if (showPromise) {
+                return showPromise
+            }
+
             if (modal.isVisible()) {
                 return Promise.resolve()
             }
 
-            return eventEmitter
+            showPromise = eventEmitter
                 .emit('show:before')
                 .then(() => {
                     modal.root.style.visibility = 'visible'
 
                     return eventEmitter.emit('show')
                 })
+                .finally(() => {
+                    showPromise = null
+                })
+
+            return showPromise
         },
 
-        hide: async () => {
+        hide: () => {
+            if (hidePromise) {
+                return hidePromise
+            }
+
             if (modal.isHidden()) {
                 return Promise.resolve()
             }
 
-            return eventEmitter
+            hidePromise = eventEmitter
                 .emit('hide:before')
                 .then(() => {
                     modal.root.style.visibility = 'hidden'
 
                     return eventEmitter.emit('hide')
                 })
+                .finally(() => {
+                    hidePromise = null
+                })
+
+            return hidePromise
         },
 
         isVisible: () => {
