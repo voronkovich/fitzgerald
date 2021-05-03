@@ -57,9 +57,7 @@ describe('Modal', () => {
     })
 
     it('is hidden by default', () => {
-        const factory = createModalFactory()
-
-        const modal = factory.modal()
+        const modal = createModalFactory().modal()
 
         expect(modal.isHidden()).toBe(true)
         expect(modal.isVisible()).toBe(false)
@@ -67,9 +65,8 @@ describe('Modal', () => {
 
     describe('Show', () => {
         it('shows popup', async () => {
-            const factory = createModalFactory()
+            const modal = createModalFactory().modal()
 
-            const modal = factory.modal()
             await modal.show()
 
             expect(modal.root.style.visibility).toBe('visible')
@@ -78,9 +75,7 @@ describe('Modal', () => {
         })
 
         it('returns the same promise instance while showing process is not completed', () => {
-            const factory = createModalFactory()
-
-            const modal = factory.modal()
+            const modal = createModalFactory().modal()
 
             const promise1 = modal.show()
             const promise2 = modal.show()
@@ -89,9 +84,9 @@ describe('Modal', () => {
         })
 
         it('emits event before showing popup', async () => {
-            let firedBefore = false
-
             const modal = createModalFactory().modal()
+
+            let firedBefore = false
 
             modal.on('show:before', () => {
                 firedBefore = modal.isHidden()
@@ -103,9 +98,9 @@ describe('Modal', () => {
         })
 
         it('emits event after showing popup', async () => {
-            let firedAfter = false
-
             const modal = createModalFactory().modal()
+
+            let firedAfter = false
 
             modal.on('show', () => {
                 firedAfter = modal.isVisible()
@@ -129,9 +124,7 @@ describe('Modal', () => {
 
     describe('Hide', () => {
         it('hides popup', async () => {
-            const factory = createModalFactory()
-
-            const modal = factory.modal()
+            const modal = createModalFactory().modal()
 
             await modal.show()
 
@@ -145,9 +138,7 @@ describe('Modal', () => {
         })
 
         it('returns the same promise instance while hiding process is not completed', async () => {
-            const factory = createModalFactory()
-
-            const modal = factory.modal()
+            const modal = createModalFactory().modal()
 
             await modal.show()
 
@@ -158,9 +149,9 @@ describe('Modal', () => {
         })
 
         it('emits event before hiding popup', async () => {
-            let firedBefore = false
-
             const modal = createModalFactory().modal()
+
+            let firedBefore = false
 
             modal.on('hide:before', () => {
                 firedBefore = modal.isVisible()
@@ -174,9 +165,9 @@ describe('Modal', () => {
         })
 
         it('emits event after hiding popup', async () => {
-            let firedAfter = false
-
             const modal = createModalFactory().modal()
+
+            let firedAfter = false
 
             modal.on('hide', () => {
                 firedAfter = modal.isHidden()
@@ -202,9 +193,9 @@ describe('Modal', () => {
 
     describe('Destroy', () => {
         it('emits event', async () => {
-            let fired = false
-
             const modal = createModalFactory().modal()
+
+            let fired = false
 
             modal.on('destroy', () => {
                 fired = true
@@ -216,9 +207,7 @@ describe('Modal', () => {
         })
 
         it('returns the same promise instance', async () => {
-            const factory = createModalFactory()
-
-            const modal = factory.modal()
+            const modal = createModalFactory().modal()
 
             const promise1 = modal.destroy()
             const promise2 = modal.destroy()
