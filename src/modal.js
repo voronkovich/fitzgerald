@@ -63,6 +63,10 @@ export const createModal = () => {
         ...eventEmitter,
 
         show: () => {
+            if (modal.isDestroyed()) {
+                return Promise.reject(Error('Modal is destroyed.'))
+            }
+
             if (showPromise) {
                 return showPromise
             }
@@ -86,6 +90,10 @@ export const createModal = () => {
         },
 
         hide: () => {
+            if (modal.isDestroyed()) {
+                return Promise.reject(Error('Modal is destroyed.'))
+            }
+
             if (hidePromise) {
                 return hidePromise
             }

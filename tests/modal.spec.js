@@ -115,6 +115,16 @@ describe('Modal', () => {
 
             expect(firedAfter).toBe(true)
         })
+
+        it('throws an exception if modal is destroyed', async () => {
+            const modal = createModalFactory().modal()
+
+            modal.destroy()
+
+            await expect(modal.show)
+                .rejects
+                .toThrow(Error('Modal is destroyed.'))
+        })
     })
 
     describe('Hide', () => {
@@ -177,6 +187,16 @@ describe('Modal', () => {
             await modal.hide()
 
             expect(firedAfter).toBe(true)
+        })
+
+        it('throws an exception if modal is destroyed', async () => {
+            const modal = createModalFactory().modal()
+
+            modal.destroy()
+
+            await expect(modal.hide)
+                .rejects
+                .toThrow(Error('Modal is destroyed.'))
         })
     })
 
