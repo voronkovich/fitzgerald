@@ -4,7 +4,7 @@ export default (modal, id) => {
     }
 
     if (!id || 'string' !== typeof id) {
-        throw Error('Id must be not empty string.')
+        throw Error('An "id" must be not empty string.')
     }
 
     modal.root.id = id
