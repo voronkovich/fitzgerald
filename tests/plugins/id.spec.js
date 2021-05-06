@@ -1,4 +1,4 @@
-import id from '../../src/plugins/id.js'
+import plugin from '../../src/plugins/id.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "id"', () => {
@@ -7,7 +7,7 @@ describe('Plugin "id"', () => {
     beforeEach(() => {
         ({ modal } = createModalFactory([{
             key: 'id',
-            callable: id,
+            callable: plugin,
         }]))
     })
 
