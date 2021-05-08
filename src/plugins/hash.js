@@ -27,5 +27,5 @@ export default (modal, hash) => {
 
     window.addEventListener('hashchange', handler)
 
-    handler()
+    setTimeout(handler, 0)
 }
