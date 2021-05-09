@@ -192,23 +192,9 @@ popup.show()
 
     Default: `dialog`. See [dialog role](https://www.w3.org/TR/wai-aria-1.1/#dialog).
 
-  * **contentRole** `string`
+  * **label** `string`
 
-    Modal content role attribute.
-
-    Default: `document`. See [document role](https://www.w3.org/TR/wai-aria-1.1/#document).
-
-  * **modal** `boolean`
-
-    Use `aria-modal` attribute. See [aria-modal](https://www.w3.org/TR/wai-aria-1.1/#aria-modal).
-
-    Default: `true` 
-
-  * **hidden** `boolean`
-
-    Use `aria-hidden` attribute. See [aria-hidden](https://www.w3.org/TR/wai-aria-1.1/#aria-hidden).
-
-    Default: `false` 
+    A string value that labels the modal. See [aria-label](https://www.w3.org/TR/wai-aria/#aria-label).
 
   * **labelledBy** `string`
 
