@@ -27,5 +27,9 @@ export default (modal, hash) => {
 
     window.addEventListener('hashchange', handler)
 
+    modal.on('destroy', () => {
+        window.removeEventListener('hashchange', handler)
+    })
+
     setTimeout(handler, 0)
 }
