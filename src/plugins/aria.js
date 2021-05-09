@@ -5,7 +5,6 @@ export default (modal, options) => {
 
     const opts = Object.assign({
         role: 'dialog',
-        contentRole: 'document',
         modal: true,
         hidden: false,
         label: null,
@@ -14,23 +13,15 @@ export default (modal, options) => {
     }, options)
 
     if (opts.role) {
-        modal.root.setAttribute('role', opts.role)
-    }
-
-    if (opts.contentRole) {
-        modal.content.setAttribute('role', opts.contentRole)
-
-        if ('document' === opts.contentRole) {
-            modal.content.tabIndex = 0
-        }
+        modal.content.setAttribute('role', opts.role)
     }
 
     if (opts.modal) {
-        modal.root.setAttribute('aria-modal', true)
+        modal.content.setAttribute('aria-modal', true)
     }
 
     if (opts.label) {
-        modal.root.setAttribute('aria-label', opts.label)
+        modal.content.setAttribute('aria-label', opts.label)
     }
 
     const setAriaHidden = (value) => {
@@ -52,7 +43,7 @@ export default (modal, options) => {
 
         const labelledBy = modal.content.querySelector(opts.labelledBySelector)
         if (labelledBy) {
-            modal.root.setAttribute(
+            modal.content.setAttribute(
                 'aria-labelledby',
                 getElementId(labelledBy)
             )
@@ -60,7 +51,7 @@ export default (modal, options) => {
 
         const describedBy = modal.content.querySelector(opts.describedBySelector)
         if (describedBy) {
-            modal.root.setAttribute(
+            modal.content.setAttribute(
                 'aria-describedby',
                 getElementId(describedBy)
             )
