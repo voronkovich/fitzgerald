@@ -15,18 +15,14 @@ export default (modal, content) => {
 }
 
 const setElementContent = (element, content) => {
-    if ('undefined' === typeof content) {
+    if ( 'undefined' === typeof content || null === content) {
+        replaceChildren(element)
+
         return
     }
 
     if ('string' === typeof content) {
         element.innerHTML = content
-
-        return
-    }
-
-    if (null === content) {
-        replaceChildren(element)
 
         return
     }
