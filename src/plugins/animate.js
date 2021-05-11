@@ -4,16 +4,16 @@ export default (modal, options) => {
     }
 
     for (const [key, opts]  of Object.entries(options)) {
-        const element = modal[key]
-
-        if (!element) {
-            throw Error(`Animation object "${key}" not exists.`)
-        }
-
         if (opts.show) {
             const showClasses = opts.show.split(/\s/)
 
             modal.on('show', () => {
+                const element = modal[key] || modal.root.querySelector(key)
+
+                if (!element) {
+                    return
+                }
+
                 animate(element, showClasses)
 
                 return waitAnimationsFinished(element)
@@ -24,6 +24,12 @@ export default (modal, options) => {
             const hideClasses = opts.hide.split(/\s/)
 
             modal.on('hide:before', () => {
+                const element = modal[key] || modal.root.querySelector(key)
+
+                if (!element) {
+                    return
+                }
+
                 animate(element, hideClasses)
 
                 return waitAnimationsFinished(element)
