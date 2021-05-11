@@ -5,37 +5,29 @@ export default (modal, options) => {
 
     for (const [key, opts]  of Object.entries(options)) {
         if (opts.show) {
-            const showClasses = opts.show.split(/\s/)
-
-            modal.on('show', () => {
-                const element = modal[key] || modal.root.querySelector(key)
-
-                if (!element) {
-                    return
-                }
-
-                animate(element, showClasses)
-
-                return waitAnimationsFinished(element)
-            })
+            animateElement(modal, key, 'show', opts.show)
         }
 
         if (opts.hide) {
-            const hideClasses = opts.hide.split(/\s/)
-
-            modal.on('hide:before', () => {
-                const element = modal[key] || modal.root.querySelector(key)
-
-                if (!element) {
-                    return
-                }
-
-                animate(element, hideClasses)
-
-                return waitAnimationsFinished(element)
-            })
+            animateElement(modal, key, 'hide:before', opts.hide)
         }
     }
+}
+
+const animateElement = (modal, key, event, classes) => {
+    classes = classes.split(/\s/)
+
+    modal.on(event, () => {
+        const element = modal[key] || modal.root.querySelector(key)
+
+        if (!element) {
+            return
+        }
+
+        animate(element, classes)
+
+        return waitAnimationsFinished(element)
+    })
 }
 
 const animate = (element, classes) => {
