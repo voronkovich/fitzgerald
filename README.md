@@ -68,19 +68,20 @@ popup.show()
 
   Sets modal's content.
 
-  ```javascript
+  ```js
   const popup = modal({
       content: document.querySelector('#hello'),
   })
   ```
 
-  ```javascript
+  ```js
   const popup = modal({
       content: `
           <h1>Lorem ipsum</h1>
           <p>Dolor sit amet...</p>
       `,
   })
+  ```
 
 * **id** `string`
 
@@ -102,7 +103,7 @@ popup.show()
 
     Allowed values: `left`, `center`, `right`
 
-  ```javascript
+  ```js
   const popup = modal({
       position: {
           vertical: 'top',
@@ -133,7 +134,7 @@ popup.show()
 
     Default: `true`
 
-  ```javascript
+  ```js
   const popup = modal({
       content: `
           <button class="close-btn">Close</button>
@@ -144,7 +145,7 @@ popup.show()
   })
   ```
 
-  ```javascript
+  ```js
   const popup = modal({
       hide: {
           hide: '[data-close]',
@@ -152,6 +153,7 @@ popup.show()
           backdrop: false, // Disable backdrop
       }
   })
+  ```
 
 * **hash** `string`
 
@@ -161,11 +163,12 @@ popup.show()
   <a href="#boo">Show modal</a>
   ```
 
-  ```javascript
+  ```js
   const popup = modal({
       content: 'Boo!',
       hash: '#boo', 
   })
+  ```
 
 * **focus** `string`
 
@@ -173,7 +176,7 @@ popup.show()
 
   Default: `[data-fitz-focus]`
 
-  ```javascript
+  ```js
   const popup = modal({
       content: `
           <label>Enter your name:</label>
@@ -181,6 +184,7 @@ popup.show()
       `,
       focus: 'input',
   })
+  ```
 
 * **aria** `Object`
 
@@ -208,7 +212,7 @@ popup.show()
     
     Default: `[data-fitz-aria-describedby]` 
 
-  ```javascript
+  ```js
   const popup = modal({
       content: `
           <h2>Lorem ipsum</h2>
@@ -217,7 +221,6 @@ popup.show()
       `,
       aria: {
           role: 'alertdialog',
-          hidden: true,
           labelledBy: 'h2',
           describedBy: 'p:first-child',
       },
@@ -242,7 +245,7 @@ popup.show()
 
 You can use properties to interact with the modal DOM (attach event listeners, add nodes and etc.):
 
-```javascript
+```js
 const popup = modal({ /* Options */ })
 
 popup.content.addEventListener('submit', (e) => {
@@ -272,7 +275,7 @@ popup.content.addEventListener('submit', (e) => {
 
   Removes an [event](#events) listener
 
-```javascript
+```js
 const popup = modal()
 
 popup.setContent('This popup will be closed after 5 seconds.')
