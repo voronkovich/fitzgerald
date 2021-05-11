@@ -4,6 +4,8 @@
 
 [Fitzgerald](https://www.npmjs.com/package/fitzgerald) (or just Fitz) is a minimalist [modal window](https://en.wikipedia.org/wiki/Modal_window) for the browser implemented in pure JavaScript and CSS. It is fully customizable with [options](#options), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and [plugins](https://github.com/voronkovich/fitzgerald/tree/master/src/plugins).
 
+Demo is available [here](https://voronkovich.github.io/fitzgerald/demo/).
+
 ## Features
 
 - Customizable with CSS variables
