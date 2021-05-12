@@ -1,15 +1,3 @@
-const vertical = {
-    'top': 'flex-start',
-    'center': 'center',
-    'bottom': 'flex-end',
-}
-
-const horizontal = {
-    'left': 'flex-start',
-    'center': 'center',
-    'right': 'flex-end',
-}
-
 export default (modal, options) => {
     if (false === options) {
         return
@@ -36,4 +24,16 @@ export default (modal, options) => {
             horizontal[options.horizontal]
         )
     }
+}
+
+const vertical = {
+    'top':    'flex-start',
+    'center': 'center',
+    'bottom': 'flex-end',
+}
+
+const horizontal = {
+    'left':   'flex-start',
+    'center': 'center',
+    'right':  'flex-end',
 }
