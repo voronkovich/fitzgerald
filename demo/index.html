@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <template id="subscribe">
+        <template id="subscribe-template">
             <button class="fitz-hide" data-fitz-hide aria-label="Close">&times;</button>
 
             <h2 class="mb-3">Let's keep in touch</h2>
@@ -45,8 +45,8 @@
         <script src="../dist/fitzgerald.min.js"></script>
         <script>
             const modal = Fitz.modal({
-                id: 'sign-in',
-                content: document.querySelector('#subscribe'),
+                class: 'subscribe-modal',
+                content: document.querySelector('#subscribe-template'),
                 hash: '#subscribe',
                 style: {
                     backdropOpacity: 0.7,
@@ -67,10 +67,16 @@
                         hide: 'animate__animated animate__fadeOutLeft',
                     },
                     '[type=submit]': {
-                        show: 'animate__animated animate__slower animate__bounceInRight',
+                        show: 'animate__animated animate__slow animate__bounceInRight',
                     },
                 }
             })
         </script>
+        <style type="text/css" media="screen">
+            .subscribe-modal {
+                --fitz-hide-margin: -0.2em 0;
+                --fitz-padding: 1.5rem;
+            }
+        </style>
     </body>
 </html>
