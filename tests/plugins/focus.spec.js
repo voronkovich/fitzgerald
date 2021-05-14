@@ -87,6 +87,33 @@ describe('Plugin "focus"', () => {
         })
     })
 
+    it('restores previous active element after modal has been hidden', async () => {
+        const popup = modal()
+
+        document.body.innerHTML = `
+            <button>Click Me!</button>
+        `
+
+        const button = document.querySelector('button')
+        button.focus()
+
+        popup.content.innerHTML = `
+            <a href="https://github.com/voronkovich/fitzgerald" data-fitz-focus>
+                Fitzgerald
+            </a>
+        `
+
+        document.body.appendChild(popup.root)
+
+        await popup.show()
+
+        expect(document.activeElement).not.toBe(button)
+
+        await popup.hide()
+
+        expect(document.activeElement).toBe(button)
+    })
+
     describe('creates focus trap', () => {
 
         it('prevents loosing focus when modal has no tabbables', async () => {

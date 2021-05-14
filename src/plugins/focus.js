@@ -13,22 +13,11 @@ export default (modal, focus) => {
         element.focus()
     }
 
-    let previousActiveElement
-
-    const saveActiveElement = () => {
-        previousActiveElement = document.activeElement || document.body
-    }
-
-    const restoreActiveElement = () => {
-        if (previousActiveElement) {
-            previousActiveElement.focus()
-        }
-    }
-
+    let restoreActiveElement = () => {}
     let destroyFocusTrap = () => {}
 
     modal.on('show', () => {
-        saveActiveElement()
+        restoreActiveElement = saveActiveElement()
 
         destroyFocusTrap = createFocusTrap(modal.root)
 
@@ -36,10 +25,24 @@ export default (modal, focus) => {
     })
 
     modal.on('hide', () => {
-        destroyFocusTrap()
-
         restoreActiveElement()
+
+        destroyFocusTrap()
     })
+}
+
+const saveActiveElement = () => {
+    const activeElement = document.activeElement
+
+    return () => {
+        if (document.activeElement) {
+            document.activeElement.blur()
+        }
+
+        if (activeElement) {
+            activeElement.focus()
+        }
+    }
 }
 
 const createFocusTrap = (node) => {
