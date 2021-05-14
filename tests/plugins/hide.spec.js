@@ -91,7 +91,7 @@ describe('Plugin "hide"', () => {
         })
 
         popup.content.dispatchEvent(new KeyboardEvent('keyup', {
-            keyCode: 27,
+            key: 'Escape',
             bubbles: true,
         }))
 
@@ -116,7 +116,7 @@ describe('Plugin "hide"', () => {
         })
 
         popup.content.dispatchEvent(new KeyboardEvent('keyup', {
-            keyCode: 27,
+            key: 'Escape',
             bubbles: true,
         }))
 

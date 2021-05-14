@@ -29,7 +29,7 @@ export default (modal, options) => {
 
     if (opts.escape) {
         modal.root.addEventListener('keyup', (e) => {
-            if (27 === e.keyCode) {
+            if ('Escape' === e.key || 'Esc' === e.key) {
                 modal.hide()
             }
         })
