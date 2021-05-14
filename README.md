@@ -8,8 +8,9 @@ Demo is available [here](https://voronkovich.github.io/fitzgerald/demo/).
 
 ## Features
 
-- Customizable with CSS variables
-- Accessibility (ARIA)
+- Customization with CSS variables
+- Accessibility ([ARIA](https://www.w3.org/TR/wai-aria/))
+- [Focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7)
 - Animation (with [animate.css](https://github.com/animate-css/animate.css) and etc.)
 - Custom plugins
 
@@ -190,7 +191,7 @@ popup.show()
 
 * **aria** `Object`
 
-  Configures [ARIA](https://www.w3.org/TR/wai-aria-1.1/):
+  Configures [ARIA](https://www.w3.org/TR/wai-aria/):
 
   * **role** `string`
 
@@ -312,32 +313,5 @@ const popup = modal()
 
 popup.on('show:before', () => {
     popup.setContent(`You've seen this popup ${++counter} times!`)
-})
-```
-
-## Focus trap
-
-Creating the [focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7) is not an easy task, so this package doesn't support this feature out of the box. But, you could use any third-party package like [focus-trap](https://github.com/focus-trap/focus-trap) to implement such feature:
-
-```js
-import { createFocusTrap } from 'focus-trap'
-import { modal, plugin } from 'fitzgerald'
-import 'fitzgerald/src/style.css'
-
-plugin((modal) => {
-    const trap = createFocusTrap(modal.content)
-
-    modal.on('show', () => {
-        trap.activate()
-    })
-
-    modal.on('hide', () => {
-        trap.deactivate()
-    })
-})
-
-const popup = modal({
-    content: document.querySelector('#sign-in'),
-    hash: '#sign-in',
 })
 ```
