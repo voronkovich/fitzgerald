@@ -1,6 +1,7 @@
 # Fitzgerald
 
 [![CI](https://github.com/voronkovich/fitzgerald/actions/workflows/ci.yaml/badge.svg)](https://github.com/voronkovich/fitzgerald/actions/workflows/ci.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/voronkovich/fitzgerald/badge.svg?branch=master)](https://coveralls.io/github/voronkovich/fitzgerald?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 [Fitzgerald](https://www.npmjs.com/package/fitzgerald) (or just Fitz) is a minimalist [modal window](https://en.wikipedia.org/wiki/Modal_window) for the browser implemented in pure JavaScript and CSS. It is fully customizable with [options](#options), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and [plugins](https://github.com/voronkovich/fitzgerald/tree/master/src/plugins).
