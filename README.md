@@ -114,6 +114,21 @@ popup.show()
       }
   })
   ```
+* **style** `Object`
+
+  Configures the modal's style by adding CSS variables to it's root element. All available CSS variables can be found at [./src/style.css](src/style.css).
+
+  ```js
+  const popup = modal({
+      style: {
+          // --fitz-backdrop-backdrop
+          backdropBackground: '#eeaaee',
+
+          // --fitz-width
+          width: '50%',
+      }
+  })
+  ```
 
 * **hide** `Object|string`
 
