@@ -7,8 +7,8 @@
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: var(--fitz-align-horizontal, center);
-    align-items: var(--fitz-align-vertical, center);
+    justify-content: var(--fitz-position-horizontal, center);
+    align-items: var(--fitz-position-vertical, center);
 }
 
 .fitz-backdrop {
