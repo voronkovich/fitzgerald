@@ -1,6 +1,5 @@
 import { createModalFactory } from './modal.js'
 
-import ajaxPlugin from './plugins/ajax.js'
 import animatePlugin from './plugins/animate.js'
 import ariaPlugin from './plugins/aria.js'
 import classPlugin from './plugins/class.js'
@@ -14,11 +13,6 @@ import positionPlugin from './plugins/position.js'
 import stylePlugin from './plugins/style.js'
 
 const { modal, plugin } = createModalFactory([
-    {
-        key: 'ajax',
-        callable: ajaxPlugin,
-        lazy: true,
-    },
     {
         key: 'animate',
         callable: animatePlugin,
