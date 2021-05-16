@@ -357,3 +357,7 @@ popup.on('show:before', () => {
     popup.setContent(`You've seen this popup ${++counter} times!`)
 })
 ```
+
+## License
+
+Copyright (c) Voronkovich Oleg. Distributed under the [MIT](LICENSE).
