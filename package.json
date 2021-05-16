@@ -1,7 +1,10 @@
 {
     "name": "fitzgerald",
     "description": "Simple, modest popup",
-    "keywords": [ "popup", "modal" ],
+    "keywords": [
+        "popup",
+        "modal"
+    ],
     "version": "0.0.0",
     "author": "Oleg Voronkovich",
     "homepage": "https://github.com/voronkovich/fitzgerald#readme",
@@ -20,11 +23,13 @@
         "esbuild-jest": "^0.5.0",
         "eslint": "^7.24.0",
         "eslint-plugin-jest": "^24.3.5",
-        "jest": "^26.6.3"
+        "jest": "^26.6.3",
+        "release-it": "^14.6.2"
     },
     "scripts": {
         "test": "jest",
         "coverage": "jest --coverage",
-        "lint": "eslint src tests"
+        "lint": "eslint src tests",
+        "release": "release-it"
     }
 }

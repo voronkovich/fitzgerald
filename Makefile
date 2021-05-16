@@ -5,6 +5,10 @@ dist: dist/fitzgerald.min.js dist/fitzgerald.min.css
 clean:
 	rm -rf dist/
 
+.PHONY: release
+release:
+	npx release-it
+
 dist/fitzgerald.min.js:
 	npx esbuild \
 		--bundle \
