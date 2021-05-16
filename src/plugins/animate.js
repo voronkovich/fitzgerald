@@ -24,26 +24,20 @@ const animateElement = (modal, key, event, classes) => {
             return
         }
 
-        animate(element, classes)
+        element.classList.add(...classes)
 
-        return waitAnimationsFinished(element)
+        return waitAnimationsFinished(element).finally(() => {
+            element.classList.remove(...classes)
+        })
     })
-}
-
-const animate = (element, classes) => {
-    element.classList.add(...classes)
-
-    element.addEventListener('animationend', () => {
-        element.classList.remove(...classes)
-    }, { once: true })
 }
 
 const waitAnimationsFinished = async (element) => {
     if (element.getAnimations) {
         return Promise.allSettled(
             element
-            .getAnimations()
-            .map(animation => animation.finished)
+                .getAnimations()
+                .map(animation => animation.finished)
         )
     }
 

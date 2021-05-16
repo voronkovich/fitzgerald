@@ -26,12 +26,14 @@ describe('Plugin "animate"', () => {
 
         const button = popup.content.querySelector('.btn')
 
+        let animationClass = ''
+        popup.on('show', () => {
+            animationClass = button.className
+        })
+
         await popup.show()
 
-        expect(button.className).toBe('btn animate__animated animate__bounceInRight')
-
-        button.dispatchEvent(new Event('animationend'))
-
+        expect(animationClass).toBe('btn animate__animated animate__bounceInRight')
         expect(button.className).toBe('btn')
     })
 
@@ -50,14 +52,16 @@ describe('Plugin "animate"', () => {
 
         const button = popup.content.querySelector('.btn')
 
+        let animationClass = ''
+        popup.on('hide:before', () => {
+            animationClass = button.className
+        })
+
         await popup.show()
 
         await popup.hide()
 
-        expect(button.className).toBe('btn animate__animated animate__fadeOut')
-
-        button.dispatchEvent(new Event('animationend'))
-
+        expect(animationClass).toBe('btn animate__animated animate__fadeOut')
         expect(button.className).toBe('btn')
     })
 })
