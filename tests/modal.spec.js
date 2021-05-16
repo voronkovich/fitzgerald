@@ -120,6 +120,18 @@ describe('Modal', () => {
                 .rejects
                 .toThrow(Error('Modal is destroyed.'))
         })
+
+        it('throws an exception if hiding process is not completed', async () => {
+            const modal = createModalFactory().modal()
+
+            await modal.show()
+
+            modal.hide()
+
+            await expect(modal.show())
+                .rejects
+                .toThrow(Error('Hiding process is not completed.'))
+        })
     })
 
     describe('Hide', () => {
@@ -188,6 +200,16 @@ describe('Modal', () => {
             await expect(modal.hide)
                 .rejects
                 .toThrow(Error('Modal is destroyed.'))
+        })
+
+        it('throws an exception if showing process is not completed', async () => {
+            const modal = createModalFactory().modal()
+
+            modal.show()
+
+            await expect(modal.hide())
+                .rejects
+                .toThrow(Error('Showing process is not completed.'))
         })
     })
 

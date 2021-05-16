@@ -67,6 +67,10 @@ export const createModal = () => {
                 return Promise.reject(Error('Modal is destroyed.'))
             }
 
+            if (hidePromise) {
+                return Promise.reject(Error('Hiding process is not completed.'))
+            }
+
             if (showPromise) {
                 return showPromise
             }
@@ -92,6 +96,10 @@ export const createModal = () => {
         hide: () => {
             if (modal.isDestroyed()) {
                 return Promise.reject(Error('Modal is destroyed.'))
+            }
+
+            if (showPromise) {
+                return Promise.reject(Error('Showing process is not completed.'))
             }
 
             if (hidePromise) {
