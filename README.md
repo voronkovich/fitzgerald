@@ -247,6 +247,30 @@ popup.show()
   })
   ```
 
+* **animate** `Object`
+
+  Allows to add CSS classes for arbitrary elements while the modal is being showing or hiding. You can use any library like [animate.css](https://github.com/animate-css/animate.css) or [cssanimation.io](https://github.com/yesiamrocks/cssanimation.io).
+
+  To set an element which will be animated you can use keywords: `root`, `backdrop`, `content` or CSS selector.
+
+  ```js
+  const popup = modal({
+      animate: {
+          root: {
+              show: 'animate__animated animate__fadeIn',
+              hide: 'animate__animated animate__fadeOut',
+          },
+          content: {
+              show: 'animate__animated animate__bounceInDown',
+              hide: 'animate__animated animate__fadeOutLeft',
+          },
+          '[type=submit]': {
+              show: 'animate__animated animate__slow animate__bounceInRight',
+          },
+      }
+  })
+  ```
+
 ## Instance API
 
 ### Properties
