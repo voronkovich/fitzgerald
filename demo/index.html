@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Fitz</title>
+        <title>Fitz Demo</title>
+        <link rel="stylesheet" href="./style.css" type="text/css" media="all" />
         <link rel="stylesheet" href="../dist/fitzgerald.min.css" type="text/css" media="all" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -12,71 +13,40 @@
 
         <div class="row h-100 justify-content-center">
             <div class="col align-self-center text-center">
-                <p>Simple demo with subscription form</p>
-                <a href="#subscribe" class="btn btn-primary" class>Show modal</a>
+                <p>Simple demo with call request form</p>
+                <a href="#call-me" class="btn btn-primary">Show modal</a>
             </div>
         </div>
 
-        <template id="subscribe-template">
+        <template id="call-me-template">
             <button class="fitz-hide" data-fitz-hide aria-label="Close">&times;</button>
 
-            <h2 class="mb-3">Let's keep in touch</h2>
-            <p class="mb-3">Join our newsletter to receive updates from our company.</p>
+            <header>
+                <h2 class="mb-3">Call Me</h2>
+
+                <p class="mb-3">Please give us a number and we’ll call back at your convenience.</p>
+            </header>
 
             <form>
                 <div class="mb-3">
                     <label class="form-label">Full name</label>
-                    <input type="text" class="form-control" placeholder="John Dow">
+                    <input name="name" type="text" class="form-control" placeholder="John Dow" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="john.dow@localhost">
+                    <label class="form-label">Phone</label>
+                    <input name="phone" type="tel" class="form-control" placeholder="+71234567890" required>
                 </div>
                 <div class="row justify-content-center mt-4">
                     <div class="col col-lg-6">
                         <button class="btn btn-primary btn-block w-100" type="submit">
-                            Subscribe
+                            Call Me
                         </button>
                     </div>
                 </div>
             </form>
         </template>
 
-        <script src="../dist/fitzgerald.min.js"></script>
-        <script>
-            const modal = Fitz.modal({
-                class: 'subscribe-modal',
-                content: document.querySelector('#subscribe-template'),
-                hash: '#subscribe',
-                style: {
-                    backdropOpacity: 0.7,
-                    backdropBackground: '#000000',
-                },
-                focus: 'input',
-                aria: {
-                    labelledBy: 'h2',
-                    describedBy: 'p',
-                },
-                animate: {
-                    root: {
-                        show: 'animate__animated animate__fadeIn',
-                        hide: 'animate__animated animate__fadeOut',
-                    },
-                    content: {
-                        show: 'animate__animated animate__bounceInDown',
-                        hide: 'animate__animated animate__fadeOutLeft',
-                    },
-                    '[type=submit]': {
-                        show: 'animate__animated animate__slow animate__bounceInRight',
-                    },
-                }
-            })
-        </script>
-        <style type="text/css" media="screen">
-            .subscribe-modal {
-                --fitz-hide-margin: -0.2em 0;
-                --fitz-padding: 1.5rem;
-            }
-        </style>
+        <script src="../dist/fitzgerald.min.js" defer></script>
+        <script src="./call-me.js" defer></script>
     </body>
 </html>
