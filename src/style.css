@@ -27,6 +27,8 @@
 .fitz-content {
     width: var(--fitz-width, auto);
     height: var(--fitz-height, auto);
+    min-width: var(--fitz-min-width, auto);
+    min-height: var(--fitz-min-height, auto);
     max-height: var(--fitz-max-height, 90%);
     max-width: var(--fitz-max-width, 86%);
     margin: var(--fitz-margin, 0);
