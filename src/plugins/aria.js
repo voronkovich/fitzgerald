@@ -16,7 +16,6 @@ export default (modal, options) => {
         modal.content.setAttribute('role', opts.role)
     }
 
-
     if (opts.label) {
         modal.content.setAttribute('aria-label', opts.label)
     }
