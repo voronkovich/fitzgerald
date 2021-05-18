@@ -141,11 +141,7 @@ export const createModal = () => {
                 return destroyPromise
             }
 
-            destroyPromise = eventEmitter
-                .emit('destroy')
-                .then(() => {
-                    root.remove()
-                })
+            destroyPromise = eventEmitter.emit('destroy')
 
             return destroyPromise
         },

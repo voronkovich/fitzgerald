@@ -18,4 +18,8 @@ export default (modal, element = document.body) => {
     }
 
     target.append(modal.root)
+
+    modal.on('destroy', () => {
+        modal.root.remove()
+    })
 }

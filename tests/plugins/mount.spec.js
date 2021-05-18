@@ -10,6 +10,8 @@ describe('Plugin "mount"', () => {
             callable: plugin,
             lazy: false,
         }]))
+
+        document.body.innerHTML = ''
     })
 
     it('mounts modal to document.body by default', () => {
@@ -48,5 +50,25 @@ describe('Plugin "mount"', () => {
                 mount: []
             })
         }).toThrow('Mount element must be instance of "Element".')
+    })
+
+    it('removes modal from DOM after modal has been destroyed', async () => {
+        document.body.innerHTML = `
+            <h1>Hello!</h1>
+            <p>Lorem ipsum dolor sit amet</p>
+            <div id="modal"></div>
+        `
+
+        const popup = modal({
+            mount: '#modal'
+        })
+
+        const mountElement = document.querySelector('#modal')
+
+        expect(mountElement.firstElementChild).not.toBe(null)
+
+        await popup.destroy()
+
+        expect(mountElement.firstElementChild).toBe(null)
     })
 })
