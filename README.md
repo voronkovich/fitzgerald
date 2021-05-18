@@ -300,25 +300,29 @@ popup.content.addEventListener('submit', (e) => {
 
 ### Methods
 
-* `show()`
+* `show()` *async*
 
-  Shows modal
+  Shows modal.
 
-* `hide()`
+* `hide()` *async*
 
-  Hides modal
+  Hides modal.
+
+* `destroy()` *async*
+
+  Destroys modal.
 
 * `setContent(content)`
 
-  Sets the modal's content:
+  Sets the modal's content.
 
 * `on(event, callback)`
 
-  Adds an [event](#events) listener
+  Adds an [event](#events) listener.
   
 * `off(event, callback)`
 
-  Removes an [event](#events) listener
+  Removes an [event](#events) listener.
 
 ```js
 const popup = modal()
@@ -334,21 +338,21 @@ setTimeout(popup.hide, 5000)
 
 * `show:before`
 
-  Occurs before showing the modal
+  Occurs before showing the modal.
 
 * `show`
 
-  Occurs after the modal has been show
+  Occurs after the modal has been show.
 
 * `hide:before`
 
-  Occurs before hiding the modal
+  Occurs before hiding the modal.
   
 * `hide`
 
-  Occurs after the modal has been hidden
+  Occurs after the modal has been hidden.
 
-```javascript
+```js
 let counter = 0
 
 const popup = modal()
