@@ -42,7 +42,15 @@ const waitAnimationsFinished = async (element) => {
     }
 
     return new Promise((resolve) => {
-        let { animations, transitions } = hasAnimations(element)
+        const style = getComputedStyle(element)
+
+        const animationDuration = parseFloat(style.animationDuration) || 0
+        const transitionDuration = parseFloat(style.transitionDuration) || 0
+
+        setTimeout(resolve, 1000 * Math.max(animationDuration, transitionDuration))
+
+        let animations = animationDuration > 0
+        let transitions = transitionDuration > 0
 
         if (!transitions && !animations) {
             resolve()
@@ -68,16 +76,4 @@ const waitAnimationsFinished = async (element) => {
             }, { once: true })
         }
     })
-}
-
-const hasAnimations = (element) => {
-    const style = getComputedStyle(element)
-
-    const animationDuration = parseFloat(style.animationDuration) || 0
-    const transitionDuration = parseFloat(style.transitionDuration) || 0
-
-    return {
-        animations: animationDuration > 0,
-        transitions: transitionDuration > 0,
-    }
 }
