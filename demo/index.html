@@ -46,6 +46,26 @@
             </form>
         </template>
 
+        <script src="https://unpkg.com/@ungap/promise-all-settled@1.1.2/min.js"></script>
+        <script>
+            if (!Promise.allSettled) {
+                Promise.allSettled = allSettled
+            }
+
+            if (!Promise.prototype.finally) {
+                Promise.prototype.finally = function(callback) {
+                    if (typeof callback !== 'function') {
+                        return this.then(callback, callback)
+                    }
+                    const P = this.constructor || Promise
+                    return this.then(
+                        value => P.resolve(callback()).then(() => value),
+                        err => P.resolve(callback()).then(() => { throw err })
+                    )
+                }
+            }
+        </script>
+
         <script src="../dist/fitzgerald.min.js" defer></script>
         <script src="./call-me.js" defer></script>
     </body>

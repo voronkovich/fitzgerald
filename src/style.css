@@ -21,7 +21,7 @@
     margin: 0;
     background: var(--fitz-backdrop-background, black);
     opacity: var(--fitz-backdrop-opacity, 0.5);
-    z-index: 0;
+    z-index: -1;
 }
 
 .fitz-content {
@@ -37,7 +37,7 @@
     background: var(--fitz-background, white);
     border-radius: var(--fitz-border-radius, 5px);
     box-shadow: var(--fitz-box-shadow, rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px);
-    z-index: 1;
+    z-index: 0;
     overflow-x: hidden;
     overflow-y: auto;
 }
