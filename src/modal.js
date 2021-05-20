@@ -43,11 +43,17 @@ export const createModalFactory = (plugins = []) => {
  * @return {Object} Modal instance
  */
 export const createModal = () => {
-    const root = createRootElement()
-    const backdrop = createBackdropElement()
-    const content = createContentElement()
+    const root = document.createElement('div')
+    root.className = 'fitz'
+
+    const backdrop = document.createElement('div')
+    backdrop.className = 'fitz-backdrop'
+
+    const content = document.createElement('div')
+    content.className = 'fitz-content'
 
     root.append(backdrop, content)
+    root.style.visibility = 'hidden'
 
     const eventEmitter = createEventEmitter()
 
@@ -148,32 +154,4 @@ export const createModal = () => {
     }
 
     return modal
-}
-
-const createRootElement = () => {
-    const root = document.createElement('div')
-
-    root.className = 'fitz'
-
-    Object.assign(root.style, {
-        visibility: 'hidden',
-    })
-
-    return root
-}
-
-const createBackdropElement = () => {
-    const backdrop = document.createElement('div')
-
-    backdrop.className = 'fitz-backdrop'
-
-    return backdrop
-}
-
-const createContentElement = () => {
-    const content = document.createElement('div')
-
-    content.className = 'fitz-content'
-
-    return content
 }
