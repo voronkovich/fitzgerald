@@ -4,25 +4,18 @@ import createEventEmitter from './event-emitter.js'
 export const createModalFactory = (plugins = []) => {
     const pluginRegistry = new PluginRegistry()
 
-    const plugin = (options) => {
+    const usePlugin = (options) => {
         pluginRegistry.add(options)
     }
 
-    plugins.forEach(plugin)
-
-    /**
-     * Creates new modal instance
-     *
-     * @return {Object} Modal instance
-     */
-     const modal = (options = {}) => {
+    const createModal = (options = {}) => {
         if ('string' === typeof options || options instanceof Node) {
             options = {
                 content: options,
             }
         }
 
-        const modal = createModal()
+        const modal = createModalInstance()
 
         applyPlugins(pluginRegistry, modal, options)
 
@@ -31,18 +24,15 @@ export const createModalFactory = (plugins = []) => {
         return modal
     }
 
+    plugins.forEach(usePlugin)
+
     return Object.freeze({
-        modal,
-        plugin,
+        createModal,
+        usePlugin,
     })
 }
 
-/**
- * Creates modal instance
- *
- * @return {Object} Modal instance
- */
-export const createModal = () => {
+const createModalInstance = () => {
     const root = document.createElement('div')
     root.className = 'fitz'
 

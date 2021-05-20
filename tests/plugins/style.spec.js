@@ -2,17 +2,17 @@ import plugin from '../../src/plugins/style.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "style"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'style',
             callable: plugin,
         }]))
     })
 
     it('sets CSS variables', () => {
-        const popup = modal({
+        const modal = createModal({
             style: {
                 backdropBackground: '#eeaaee',
                 width: '50%',
@@ -20,11 +20,11 @@ describe('Plugin "style"', () => {
         })
 
         expect(
-            popup.root.style.getPropertyValue('--fitz-backdrop-background')
+            modal.root.style.getPropertyValue('--fitz-backdrop-background')
         ).toBe('#eeaaee')
 
         expect(
-            popup.root.style.getPropertyValue('--fitz-width')
+            modal.root.style.getPropertyValue('--fitz-width')
         ).toBe('50%')
     })
 })

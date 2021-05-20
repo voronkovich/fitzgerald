@@ -2,10 +2,10 @@ import plugin from '../../src/plugins/mount.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "mount"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'mount',
             callable: plugin,
             lazy: false,
@@ -15,9 +15,9 @@ describe('Plugin "mount"', () => {
     })
 
     it('mounts modal to document.body by default', () => {
-        const popup = modal()
+        const modal = createModal()
 
-        expect(document.body.lastElementChild).toBe(popup.root)
+        expect(document.body.lastElementChild).toBe(modal.root)
     })
 
     it('allows to set element for mounting', () => {
@@ -27,18 +27,18 @@ describe('Plugin "mount"', () => {
             <div id="modal"></div>
         `
 
-        const popup = modal({
+        const modal = createModal({
             mount: '#modal'
         })
 
         const mountElement = document.querySelector('#modal')
 
-        expect(mountElement.lastElementChild).toBe(popup.root)
+        expect(mountElement.lastElementChild).toBe(modal.root)
     })
 
     it('throws exception if mount element not exists', () => {
         expect(() => {
-            modal({
+            createModal({
                 mount: '#my-modal > div'
             })
         }).toThrow('Mount element "#my-modal > div" not found.')
@@ -46,7 +46,7 @@ describe('Plugin "mount"', () => {
 
     it('throws exception if mount element invalid', () => {
         expect(() => {
-            modal({
+            createModal({
                 mount: []
             })
         }).toThrow('Mount element must be instance of "Element".')
@@ -59,7 +59,7 @@ describe('Plugin "mount"', () => {
             <div id="modal"></div>
         `
 
-        const popup = modal({
+        const modal = createModal({
             mount: '#modal'
         })
 
@@ -67,7 +67,7 @@ describe('Plugin "mount"', () => {
 
         expect(mountElement.firstElementChild).not.toBe(null)
 
-        await popup.destroy()
+        await modal.destroy()
 
         expect(mountElement.firstElementChild).toBe(null)
     })

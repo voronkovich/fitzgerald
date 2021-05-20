@@ -2,17 +2,17 @@ import plugin from '../../src/plugins/position.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "position"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'position',
             callable: plugin,
         }]))
     })
 
     it('sets modal position with CSS variables', () => {
-        const popup = modal({
+        const modal = createModal({
             position: {
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -20,17 +20,17 @@ describe('Plugin "position"', () => {
         })
 
         expect(
-            popup.root.style.getPropertyValue('--fitz-position-vertical')
+            modal.root.style.getPropertyValue('--fitz-position-vertical')
         ).toBe('flex-end')
 
         expect(
-            popup.root.style.getPropertyValue('--fitz-position-horizontal')
+            modal.root.style.getPropertyValue('--fitz-position-horizontal')
         ).toBe('flex-start')
     })
 
     it('Throws exception if invalid vertical position specified', () => {
         expect(() => {
-            modal({
+            createModal({
                 position: {
                     vertical: 'foo',
                 }
@@ -40,7 +40,7 @@ describe('Plugin "position"', () => {
 
     it('Throws exception if invalid horizontal position specified', () => {
         expect(() => {
-            modal({
+            createModal({
                 position: {
                     horizontal: 'bar',
                 }

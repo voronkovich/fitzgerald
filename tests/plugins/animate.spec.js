@@ -2,17 +2,17 @@ import plugin from '../../src/plugins/animate.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "animate"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'animate',
             callable: plugin,
         }]))
     })
 
     it('allows to add specified CSS classes to animate element after modal has been showed', async () => {
-        const popup = modal({
+        const modal = createModal({
             animate: {
                 'button': {
                     show: 'animate__animated animate__bounceInRight',
@@ -20,25 +20,25 @@ describe('Plugin "animate"', () => {
             }
         })
 
-        popup.content.innerHTML = `
+        modal.content.innerHTML = `
             <button class="btn">Click me!</button>
         `
 
-        const button = popup.content.querySelector('.btn')
+        const button = modal.content.querySelector('.btn')
 
         let animationClass = ''
-        popup.on('show', () => {
+        modal.on('show', () => {
             animationClass = button.className
         })
 
-        await popup.show()
+        await modal.show()
 
         expect(animationClass).toBe('btn animate__animated animate__bounceInRight')
         expect(button.className).toBe('btn')
     })
 
     it('allows to add specified CSS classes to animate element before modal has been hidden', async () => {
-        const popup = modal({
+        const modal = createModal({
             animate: {
                 'button': {
                     hide: 'animate__animated animate__fadeOut',
@@ -46,20 +46,20 @@ describe('Plugin "animate"', () => {
             }
         })
 
-        popup.content.innerHTML = `
+        modal.content.innerHTML = `
             <button class="btn">Click me!</button>
         `
 
-        const button = popup.content.querySelector('.btn')
+        const button = modal.content.querySelector('.btn')
 
         let animationClass = ''
-        popup.on('hide:before', () => {
+        modal.on('hide:before', () => {
             animationClass = button.className
         })
 
-        await popup.show()
+        await modal.show()
 
-        await popup.hide()
+        await modal.hide()
 
         expect(animationClass).toBe('btn animate__animated animate__fadeOut')
         expect(button.className).toBe('btn')

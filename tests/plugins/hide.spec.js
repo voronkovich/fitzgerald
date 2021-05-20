@@ -2,36 +2,36 @@ import plugin from '../../src/plugins/hide.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "hide"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'hide',
             callable: plugin,
             lazy: false,
         }]))
     })
 
-    it('allows to set element click on which will hide popup', async () => {
-        const popup = modal({
+    it('allows to set element click on which will hide modal', async () => {
+        const modal = createModal({
             hide: '.close',
         })
 
-        popup.content.innerHTML = `
+        modal.content.innerHTML = `
             <h4>Lorem ipsum</h4>
             <p>Dolor sit amet...</p>
             <button class="close">Close</button>
         `
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
-        const button = popup.content.querySelector('.close')
+        const button = modal.content.querySelector('.close')
         button.click()
 
         process.nextTick(() => {
@@ -39,58 +39,58 @@ describe('Plugin "hide"', () => {
         })
     })
 
-    it('hides popup when backdrop is clicked on', async () => {
-        const popup = modal()
+    it('hides modal when backdrop is clicked on', async () => {
+        const modal = createModal()
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
-        popup.backdrop.click()
+        modal.backdrop.click()
 
         process.nextTick(() => {
             expect(hided).toBe(true)
         })
     })
 
-    it('allows to disbale hiding popup when backdrop is clicked on', async () => {
-        const popup = modal({
+    it('allows to disbale hiding modal when backdrop is clicked on', async () => {
+        const modal = createModal({
             hide: {
                 backdrop: false,
             }
         })
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
-        popup.backdrop.click()
+        modal.backdrop.click()
 
         process.nextTick(() => {
             expect(hided).toBe(false)
         })
     })
 
-    it('hides popup when <ESC> is pressed', async () => {
-        const popup = modal()
+    it('hides modal when <ESC> is pressed', async () => {
+        const modal = createModal()
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
-        popup.content.dispatchEvent(new KeyboardEvent('keyup', {
+        modal.content.dispatchEvent(new KeyboardEvent('keyup', {
             key: 'Escape',
             bubbles: true,
         }))
@@ -100,22 +100,22 @@ describe('Plugin "hide"', () => {
         })
     })
 
-    it('allows to disbale hiding popup when <ESC> pressed', async () => {
-        const popup = modal({
+    it('allows to disbale hiding modal when <ESC> pressed', async () => {
+        const modal = createModal({
             hide: {
                 escape: false,
             }
         })
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
-        popup.content.dispatchEvent(new KeyboardEvent('keyup', {
+        modal.content.dispatchEvent(new KeyboardEvent('keyup', {
             key: 'Escape',
             bubbles: true,
         }))

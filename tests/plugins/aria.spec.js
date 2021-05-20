@@ -2,90 +2,90 @@ import plugin from '../../src/plugins/aria.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "aria"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'aria',
             callable: plugin,
         }]))
     })
 
     it('adds "dialog" role by default', () => {
-        const popup = modal({
+        const modal = createModal({
             aria: true,
         })
 
-        expect(popup.content.getAttribute('role')).toBe('dialog')
+        expect(modal.content.getAttribute('role')).toBe('dialog')
     })
 
     it('allows to change role attribute', () => {
-        const popup = modal({
+        const modal = createModal({
             aria: {
                 role: 'alertdialog',
             },
         })
 
-        expect(popup.content.getAttribute('role')).toBe('alertdialog')
+        expect(modal.content.getAttribute('role')).toBe('alertdialog')
     })
 
     it('adds "aria-modal" attribute', () => {
-        const popup = modal({
+        const modal = createModal({
             aria: true,
         })
 
-        expect(popup.content.getAttribute('aria-modal')).toBe('true')
+        expect(modal.content.getAttribute('aria-modal')).toBe('true')
     })
 
     it('allows to set "aria-label" attribute', () => {
-        const popup = modal({
+        const modal = createModal({
             aria: {
                 label: 'Aria label',
             }
         })
 
-        expect(popup.content.getAttribute('aria-label')).toBe('Aria label')
+        expect(modal.content.getAttribute('aria-label')).toBe('Aria label')
     })
 
     it('allows to use "aria-labelledby" attribute', async () => {
-        const popup = modal({
+        const modal = createModal({
             aria: {
                 labelledBy: 'h4'
             }
         })
 
-        popup.content.innerHTML = `
+        modal.content.innerHTML = `
             <h4>Hello!</h4>
             <div>Lorem ipsum dolor sit amet</div>
         `
 
-        await popup.show()
+        await modal.show()
 
         // Auto generated id
-        const id = popup.content.firstElementChild.id
+        const id = modal.content.firstElementChild.id
 
         expect(id).toBeTruthy()
-        expect(popup.content.getAttribute('aria-labelledby')).toBe(id)
+        expect(modal.content.getAttribute('aria-labelledby')).toBe(id)
     })
 
     it('allows to use "aria-describedby" attribute', async () => {
-        const popup = modal({
+        const modal = createModal({
             aria: {
                 describedBy: 'div',
             }
         })
 
-        popup.content.innerHTML = `
+        modal.content.innerHTML = `
             <h4>Hello!</h4>
             <div>Lorem ipsum dolor sit amet</div>
         `
 
-        await popup.show()
+        await modal.show()
 
         // Auto generated id
-        const id = popup.content.lastElementChild.id
+        const id = modal.content.lastElementChild.id
 
         expect(id).toBeTruthy()
-        expect(popup.content.getAttribute('aria-describedby')).toBe(id)
+        expect(modal.content.getAttribute('aria-describedby')).toBe(id)
     })
 })

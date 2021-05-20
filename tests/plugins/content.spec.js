@@ -2,10 +2,10 @@ import plugin from '../../src/plugins/content.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "content"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'content',
             callable: plugin,
             lazy: false,
@@ -13,21 +13,21 @@ describe('Plugin "content"', () => {
     })
 
     it('allows to set modal content as HTML-string', () => {
-        const popup = modal({
+        const modal = createModal({
             content: '<p>Lorem ipsum</p>',
         })
 
-        expect(popup.content.innerHTML).toBe('<p>Lorem ipsum</p>')
+        expect(modal.content.innerHTML).toBe('<p>Lorem ipsum</p>')
     })
 
     it('allows to remove modal content', () => {
-        const popup = modal({
+        const modal = createModal({
             content: '<p>Lorem ipsum</p>',
         })
 
-        popup.setContent()
+        modal.setContent()
 
-        expect(popup.content.innerHTML).toBe('')
+        expect(modal.content.innerHTML).toBe('')
     })
 
     it('allows to set modal content as Node instance', () => {
@@ -36,11 +36,11 @@ describe('Plugin "content"', () => {
             <div class="modal">Dolor sit amet</div>
         `
 
-        const popup = modal({
+        const modal = createModal({
             content: document.querySelector('.modal'),
         })
 
-        expect(popup.content.innerHTML).toBe('<div class="modal">Dolor sit amet</div>')
+        expect(modal.content.innerHTML).toBe('<div class="modal">Dolor sit amet</div>')
     })
 
     it('allows to set modal content as HTMLTemplate instance', () => {
@@ -49,10 +49,10 @@ describe('Plugin "content"', () => {
             <template class="modal">Dolor sit amet</template>
         `
 
-        const popup = modal({
+        const modal = createModal({
             content: document.querySelector('.modal'),
         })
 
-        expect(popup.content.innerHTML).toBe('Dolor sit amet')
+        expect(modal.content.innerHTML).toBe('Dolor sit amet')
     })
 })

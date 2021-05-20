@@ -13,7 +13,7 @@ import positionPlugin from './plugins/position.js'
 import stylePlugin from './plugins/style.js'
 import zIndexPlugin from './plugins/zIndex.js'
 
-const { modal, plugin } = createModalFactory([
+const { createModal, usePlugin } = createModalFactory([
     {
         key: 'animate',
         callable: animatePlugin,
@@ -76,8 +76,8 @@ const { modal, plugin } = createModalFactory([
     }
 ])
 
-export default modal
+export default createModal
 export {
-    modal,
-    plugin,
+    createModal,
+    usePlugin,
 }

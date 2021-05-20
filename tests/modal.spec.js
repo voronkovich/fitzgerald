@@ -12,14 +12,14 @@ describe('createModalFactory', () => {
             },
         }])
 
-        factory.plugin({
+        factory.usePlugin({
             key: 'bar',
             callable: () => {
                 barUsed = true
             },
         })
 
-        factory.modal({
+        factory.createModal({
             foo: 'foo',
             bar: 'bar',
         })
@@ -40,180 +40,180 @@ describe('createModalFactory', () => {
             },
         }])
 
-        const popup = factory.modal({
+        const modal = factory.createModal({
             foo: 'foo'
         })
 
         expect(fooOptions).toBe('foo')
-        expect(fooModal).toBe(popup)
+        expect(fooModal).toBe(modal)
     })
 })
 
 describe('Modal', () => {
-    const { modal } = createModalFactory()
+    const { createModal } = createModalFactory()
 
     beforeEach(() => {
         document.body.innerHTML = ''
     })
 
     it('is frozen', () => {
-        const popup = modal()
+        const modal = createModal()
 
-        expect(Object.isFrozen(popup)).toBe(true)
+        expect(Object.isFrozen(modal)).toBe(true)
     })
 
     it('is hidden by default', () => {
-        const popup = modal()
+        const modal = createModal()
 
-        expect(popup.isHidden()).toBe(true)
-        expect(popup.isVisible()).toBe(false)
+        expect(modal.isHidden()).toBe(true)
+        expect(modal.isVisible()).toBe(false)
     })
 
     describe('Show', () => {
-        it('shows popup', async () => {
-            const popup = modal()
+        it('shows modal', async () => {
+            const modal = createModal()
 
-            await popup.show()
+            await modal.show()
 
-            expect(popup.root.style.visibility).toBe('visible')
-            expect(popup.isVisible()).toBe(true)
-            expect(popup.isHidden()).toBe(false)
+            expect(modal.root.style.visibility).toBe('visible')
+            expect(modal.isVisible()).toBe(true)
+            expect(modal.isHidden()).toBe(false)
         })
 
         it('returns the same promise instance while showing process is not completed', () => {
-            const popup = modal()
+            const modal = createModal()
 
-            const promise1 = popup.show()
-            const promise2 = popup.show()
+            const promise1 = modal.show()
+            const promise2 = modal.show()
 
             expect(promise1).toBe(promise2)
         })
 
-        it('emits event before showing popup', async () => {
-            const popup = modal()
+        it('emits event before showing modal', async () => {
+            const modal = createModal()
 
             let firedBefore = false
 
-            popup.on('show:before', () => {
-                firedBefore = popup.isHidden()
+            modal.on('show:before', () => {
+                firedBefore = modal.isHidden()
             })
 
-            await popup.show()
+            await modal.show()
 
             expect(firedBefore).toBe(true)
         })
 
-        it('emits event after showing popup', async () => {
-            const popup = modal()
+        it('emits event after showing modal', async () => {
+            const modal = createModal()
 
             let firedAfter = false
 
-            popup.on('show', () => {
-                firedAfter = popup.isVisible()
+            modal.on('show', () => {
+                firedAfter = modal.isVisible()
             })
 
-            await popup.show()
+            await modal.show()
 
             expect(firedAfter).toBe(true)
         })
 
         it('throws an exception if modal is destroyed', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            popup.destroy()
+            modal.destroy()
 
-            await expect(popup.show())
+            await expect(modal.show())
                 .rejects
                 .toThrow(Error('Modal is destroyed.'))
         })
 
         it('throws an exception if hiding process is not completed', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            await popup.show()
+            await modal.show()
 
-            popup.hide()
+            modal.hide()
 
-            await expect(popup.show())
+            await expect(modal.show())
                 .rejects
                 .toThrow(Error('Hiding process is not completed.'))
         })
     })
 
     describe('Hide', () => {
-        it('hides popup', async () => {
-            const popup = modal()
+        it('hides modal', async () => {
+            const modal = createModal()
 
-            await popup.show()
+            await modal.show()
 
-            expect(popup.isVisible()).toBe(true)
+            expect(modal.isVisible()).toBe(true)
 
-            await popup.hide()
+            await modal.hide()
 
-            expect(popup.root.style.visibility).toBe('hidden')
-            expect(popup.isVisible()).toBe(false)
-            expect(popup.isHidden()).toBe(true)
+            expect(modal.root.style.visibility).toBe('hidden')
+            expect(modal.isVisible()).toBe(false)
+            expect(modal.isHidden()).toBe(true)
         })
 
         it('returns the same promise instance while hiding process is not completed', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            await popup.show()
+            await modal.show()
 
-            const promise1 = popup.hide()
-            const promise2 = popup.hide()
+            const promise1 = modal.hide()
+            const promise2 = modal.hide()
 
             expect(promise1).toBe(promise2)
         })
 
-        it('emits event before hiding popup', async () => {
-            const popup = modal()
+        it('emits event before hiding modal', async () => {
+            const modal = createModal()
 
             let firedBefore = false
 
-            popup.on('hide:before', () => {
-                firedBefore = popup.isVisible()
+            modal.on('hide:before', () => {
+                firedBefore = modal.isVisible()
             })
 
-            await popup.show()
+            await modal.show()
 
-            await popup.hide()
+            await modal.hide()
 
             expect(firedBefore).toBe(true)
         })
 
-        it('emits event after hiding popup', async () => {
-            const popup = modal()
+        it('emits event after hiding modal', async () => {
+            const modal = createModal()
 
             let firedAfter = false
 
-            popup.on('hide', () => {
-                firedAfter = popup.isHidden()
+            modal.on('hide', () => {
+                firedAfter = modal.isHidden()
             })
 
-            await popup.show()
+            await modal.show()
 
-            await popup.hide()
+            await modal.hide()
 
             expect(firedAfter).toBe(true)
         })
 
         it('throws an exception if modal is destroyed', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            popup.destroy()
+            modal.destroy()
 
-            await expect(popup.hide())
+            await expect(modal.hide())
                 .rejects
                 .toThrow(Error('Modal is destroyed.'))
         })
 
         it('throws an exception if showing process is not completed', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            popup.show()
+            modal.show()
 
-            await expect(popup.hide())
+            await expect(modal.hide())
                 .rejects
                 .toThrow(Error('Showing process is not completed.'))
         })
@@ -221,24 +221,24 @@ describe('Modal', () => {
 
     describe('Destroy', () => {
         it('emits event', async () => {
-            const popup = modal()
+            const modal = createModal()
 
             let fired = false
 
-            popup.on('destroy', () => {
+            modal.on('destroy', () => {
                 fired = true
             })
 
-            await popup.destroy()
+            await modal.destroy()
 
             expect(fired).toBe(true)
         })
 
         it('returns the same promise instance', async () => {
-            const popup = modal()
+            const modal = createModal()
 
-            const promise1 = popup.destroy()
-            const promise2 = popup.destroy()
+            const promise1 = modal.destroy()
+            const promise2 = modal.destroy()
 
             expect(promise1).toBe(promise2)
         })

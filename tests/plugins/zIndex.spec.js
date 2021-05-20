@@ -2,10 +2,10 @@ import plugin from '../../src/plugins/zIndex.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "zIndex"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'zIndex',
             callable: plugin,
             lazy: false,
@@ -16,18 +16,18 @@ describe('Plugin "zIndex"', () => {
 
     it('throws exception if invalid value specified', () => {
         expect(() => {
-            modal({
+            createModal({
                 zIndex: 'foo'
             })
         }).toThrow('Invalid z-index value: "foo".')
     })
 
     it('sets provided z-index value for modal root element', () => {
-        const popup = modal({
+        const modal = createModal({
             zIndex: 50,
         })
 
-        expect(Number(popup.root.style.zIndex)).toBe(50)
+        expect(Number(modal.root.style.zIndex)).toBe(50)
     })
 
     it('sets maximum available z-index value by default', () => {
@@ -36,8 +36,8 @@ describe('Plugin "zIndex"', () => {
             <div style="z-index: 5">My z-index is 5!</div>
         `
 
-        const popup = modal()
+        const modal = createModal()
 
-        expect(Number(popup.root.style.zIndex)).toBeGreaterThan(5)
+        expect(Number(modal.root.style.zIndex)).toBeGreaterThan(5)
     })
 })

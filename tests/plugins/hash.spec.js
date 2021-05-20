@@ -2,10 +2,10 @@ import plugin from '../../src/plugins/hash.js'
 import { createModalFactory } from '../../src/modal.js'
 
 describe('Plugin "hash"', () => {
-    let modal
+    let createModal
 
     beforeEach(() => {
-        ({ modal } = createModalFactory([{
+        ({ createModal } = createModalFactory([{
             key: 'hash',
             callable: plugin,
         }]))
@@ -13,16 +13,16 @@ describe('Plugin "hash"', () => {
 
     it('throws an exception if invalid hash provided', () => {
         expect(() => {
-            modal({ hash: 'abrakadabra' })
+            createModal({ hash: 'abrakadabra' })
         }).toThrow('Hash must be not empty string starting with "#".')
     })
 
     it("changes location's hash when modal is showing", async () => {
-        const popup = modal({
+        const modal = createModal({
             hash: '#sign-in',
         })
 
-        await popup.show()
+        await modal.show()
 
         expect(location.hash).toBe('#sign-in')
     })
@@ -30,24 +30,24 @@ describe('Plugin "hash"', () => {
     it("removes location's hash when modal is hiding", async () => {
         location.hash = '#hello'
 
-        const popup = modal({
+        const modal = createModal({
             hash: '#sign-in',
         })
 
-        await popup.show()
-        await popup.hide()
+        await modal.show()
+        await modal.hide()
 
         expect(location.hash).toBe('')
     })
 
-    it("shows popup when location's hash changed to specified value", () => {
-        const popup = modal({
+    it("shows modal when location's hash changed to specified value", () => {
+        const modal = createModal({
             hash: '#sign-in',
         })
 
         let showed = false
 
-        popup.on('show', () => {
+        modal.on('show', () => {
             showed = true
         })
 
@@ -60,16 +60,16 @@ describe('Plugin "hash"', () => {
         })
     })
 
-    it("hides popup when location's hash changed to arbitrary value", async () => {
-        const popup = modal({
+    it("hides modal when location's hash changed to arbitrary value", async () => {
+        const modal = createModal({
             hash: '#sign-in',
         })
 
-        await popup.show()
+        await modal.show()
 
         let hided = false
 
-        popup.on('hide', () => {
+        modal.on('hide', () => {
             hided = true
         })
 
@@ -83,13 +83,13 @@ describe('Plugin "hash"', () => {
     })
 
     it('removes event listener after modal destroy', async () => {
-        const popup = modal({
+        const modal = createModal({
             hash: '#sign-in',
         })
 
         window.removeEventListener = jest.fn(window.removeEventListener)
 
-        await popup.destroy()
+        await modal.destroy()
 
         expect(window.removeEventListener).toBeCalled()
     })
