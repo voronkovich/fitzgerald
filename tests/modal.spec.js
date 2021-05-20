@@ -69,17 +69,6 @@ describe('Modal', () => {
         expect(popup.isVisible()).toBe(false)
     })
 
-    it('appears on the top of other page elements', () => {
-        document.body.innerHTML = `
-            <h1 style="z-index: 3">My z-index is 3!</h1>
-            <div style="z-index: 5">My z-index is 5!</div>
-        `
-
-        const popup = createModalFactory().modal()
-
-        expect(Number(popup.root.style.zIndex)).toBeGreaterThan(5)
-    })
-
     describe('Show', () => {
         it('shows popup', async () => {
             const popup = modal()

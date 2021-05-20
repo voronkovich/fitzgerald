@@ -270,6 +270,15 @@ popup.show()
           },
       }
   })
+
+* **zIndex** `number|'auto'`
+
+  Sets a [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) CSS property of modal's [root](#properties) element. By default this value is calculated automatically to make modal appearing on the top of other page elements.
+
+  ```js
+  const popup = modal({
+      zIndex: 100, 
+  })
   ```
 
 ## Instance API

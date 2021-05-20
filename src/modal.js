@@ -156,7 +156,6 @@ const createRootElement = () => {
     root.className = 'fitz'
 
     Object.assign(root.style, {
-        zIndex: maxZIndex() + 1,
         visibility: 'hidden',
     })
 
@@ -177,14 +176,4 @@ const createContentElement = () => {
     content.className = 'fitz-content'
 
     return content
-}
-
-const maxZIndex = () => {
-    return Array
-        .from(document.querySelectorAll('*'))
-        .reduce((max, element) => {
-            const zIndex = +getComputedStyle(element).zIndex || 0
-
-            return Math.max(max, zIndex)
-        }, 0)
 }

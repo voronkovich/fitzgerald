@@ -11,6 +11,7 @@ import idPlugin from './plugins/id.js'
 import mountPlugin from './plugins/mount.js'
 import positionPlugin from './plugins/position.js'
 import stylePlugin from './plugins/style.js'
+import zIndexPlugin from './plugins/zIndex.js'
 
 const { modal, plugin } = createModalFactory([
     {
@@ -67,6 +68,11 @@ const { modal, plugin } = createModalFactory([
         key: 'style',
         callable: stylePlugin,
         lazy: true,
+    },
+    {
+        key: 'zIndex',
+        callable: zIndexPlugin,
+        lazy: false,
     }
 ])
 
