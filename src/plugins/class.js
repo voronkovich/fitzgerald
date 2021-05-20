@@ -3,13 +3,25 @@ export default (modal, classes) => {
         return
     }
 
-    if (!classes || 'string' !== typeof classes) {
-        throw Error('Class must be not empty string.')
+    if ('string' === typeof classes) {
+        classes = {
+            root: classes,
+        }
     }
 
-    classes
-        .split(/\s/)
-        .forEach((className) => {
-            modal.root.classList.add(className)
-        })
+    Object.entries(classes).forEach((entry) => {
+        const [ key, classes ] = entry
+
+        const element = modal[key]
+
+        if (!element) {
+            throw Error(`Couldn't set class for "${key}" element because it not exists.`)
+        }
+
+        classes
+            .split(/\s/)
+            .forEach((className) => {
+                element.classList.add(className)
+            })
+    })
 }

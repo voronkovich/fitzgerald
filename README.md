@@ -93,9 +93,26 @@ modal.show()
 
   Sets an HTML attribute `id` for the modal.
 
-* **class** `string`
+* **class** `string|Object`
 
-  Sets an HTML attribute `class` for the modal.
+  Sets an HTML attribute `class` for the modal's [elements](#properties).
+  
+  ```js
+  // Add class for the "root" element
+  const modal = createModal({
+      class: 'sign-in' 
+  })
+  ```
+
+  ```js
+  // TailwindCSS
+  const modal = createModal({
+      class: {
+          backdrop: 'bg-purple-600 bg-opacity-100',
+          content: 'bg-gray-100 rounded-xl p-8',
+      }
+  })
+  ```
 
 * **position** `Object`
 

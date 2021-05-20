@@ -11,7 +11,7 @@ describe('Plugin "class"', () => {
         }]))
     })
 
-    it('adds "class" attribute to root element', () => {
+    it('adds "class" attribute to root element if string specified', () => {
         const modal = createModal({
             class: 'sign-in my-modal',
         })
@@ -20,11 +20,29 @@ describe('Plugin "class"', () => {
         expect(modal.root.classList.contains('my-modal')).toBe(true)
     })
 
-    it('throws an exception if invalid value provided', () => {
+    it('adds "class" attributes for specified elements', () => {
+        const modal = createModal({
+            class: {
+                backdrop: 'bg-purple-600 bg-opacity-100',
+                content: 'bg-gray-100 rounded-xl p-8',
+            }
+        })
+
+        expect(modal.backdrop.classList.contains('bg-purple-600')).toBe(true)
+        expect(modal.backdrop.classList.contains('bg-opacity-100')).toBe(true)
+
+        expect(modal.content.classList.contains('bg-gray-100')).toBe(true)
+        expect(modal.content.classList.contains('rounded-xl')).toBe(true)
+        expect(modal.content.classList.contains('p-8')).toBe(true)
+    })
+
+    it('throws an exception if specified element not exists', () => {
         expect(() => {
             createModal({
-                class: {},
+                class: {
+                    foo: 'bg-purple-100',
+                },
             })
-        }).toThrow('Class must be not empty string.')
+        }).toThrow(`Couldn't set class for "foo" element because it not exists.`)
     })
 })
