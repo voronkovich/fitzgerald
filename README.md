@@ -51,21 +51,21 @@ Browser:
 
 ```html
 <script>
-const popup = Fitz.modal('Hey!')
+const modal = Fitz.createModal('Hey!')
 
-popup.show()
+modal.show()
 </script>
 ```
 
 Application:
 
 ```js
-import modal from 'fitzgerald'
+import createModal from 'fitzgerald'
 import 'fitzgerald/src/style.css'
 
-const popup = modal('Hey!')
+const modal = createModal('Hey!')
 
-popup.show()
+modal.show()
 ```
 
 ## Options
@@ -75,13 +75,13 @@ popup.show()
   Sets modal's content.
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: document.querySelector('#hello'),
   })
   ```
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: `
           <h1>Lorem ipsum</h1>
           <p>Dolor sit amet...</p>
@@ -110,7 +110,7 @@ popup.show()
     Allowed values: `left`, `center`, `right`
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       position: {
           vertical: 'top',
           horizontal: 'right',
@@ -122,7 +122,7 @@ popup.show()
   Configures the modal's style by adding CSS variables to it's root element. All available CSS variables can be found at [./src/style.css](src/style.css).
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       style: {
           // --fitz-backdrop-backdrop
           backdropBackground: '#eeaaee',
@@ -156,7 +156,7 @@ popup.show()
     Default: `true`
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: `
           <button class="close-btn">Close</button>
           <h1>Lorem ipsum</h1>
@@ -167,7 +167,7 @@ popup.show()
   ```
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       hide: {
           hide: '[data-close]',
           escape: false,   // Disable <ESC>
@@ -185,7 +185,7 @@ popup.show()
   ```
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: 'Boo!',
       hash: '#boo', 
   })
@@ -198,7 +198,7 @@ popup.show()
   Default: `[data-fitz-focus]`
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: `
           <label>Enter your name:</label>
           <input type="text" name="name" />
@@ -234,7 +234,7 @@ popup.show()
     Default: `[data-fitz-aria-describedby]` 
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       content: `
           <h2>Lorem ipsum</h2>
           <p>Dolor sit amet</p>
@@ -255,7 +255,7 @@ popup.show()
   To set an element which will be animated you can use keywords: `root`, `backdrop`, `content` or CSS selector.
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       animate: {
           root: {
               show: 'animate__animated animate__fadeIn',
@@ -276,7 +276,7 @@ popup.show()
   Sets a [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) CSS property of modal's [root](#properties) element. By default this value is calculated automatically to make modal appearing on the top of other page elements.
 
   ```js
-  const popup = modal({
+  const modal = createModal({
       zIndex: 100, 
   })
   ```
@@ -300,9 +300,9 @@ popup.show()
 You can use properties to interact with the modal DOM (attach event listeners, add nodes and etc.):
 
 ```js
-const popup = modal({ /* Options */ })
+const modal = createModal({ /* Options */ })
 
-popup.content.addEventListener('submit', (e) => {
+modal.content.addEventListener('submit', (e) => {
     // Handle form submit
 })
 ```
@@ -334,13 +334,13 @@ popup.content.addEventListener('submit', (e) => {
   Removes an [event](#events) listener.
 
 ```js
-const popup = modal()
+const modal = createModal()
 
-popup.setContent('This popup will be closed after 5 seconds.')
+modal.setContent('This modal will be closed after 5 seconds.')
 
-popup.show()
+modal.show()
 
-setTimeout(popup.hide, 5000)
+setTimeout(modal.hide, 5000)
 ```
   
 ### Events
@@ -361,13 +361,17 @@ setTimeout(popup.hide, 5000)
 
   Occurs after the modal has been hidden.
 
+* `destroy`
+
+  Occurs when the modal is being destroyed.
+
 ```js
 let counter = 0
 
-const popup = modal()
+const modal = createModal()
 
-popup.on('show:before', () => {
-    popup.setContent(`You've seen this popup ${++counter} times!`)
+modal.on('show:before', () => {
+    modal.setContent(`You've seen this modal ${++counter} times!`)
 })
 ```
 

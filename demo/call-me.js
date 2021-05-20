@@ -1,4 +1,4 @@
-const modal = Fitz.modal({
+const modal = Fitz.createModal({
     class: 'call-me',
     content: document.querySelector('#call-me-template'),
     hash: '#call-me',
