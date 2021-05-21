@@ -36,16 +36,30 @@ And add imports:
 ```js
 import modal from 'fitzgerald'
 import 'fitzgerald/src/style.css'
+import 'fitzgerald/src/default-theme.css'
 ```
 
 Also you can just include JS script and CSS file into your HTML page:
 
 ```html
 <link href="https://cdn.jsdelivr.net/gh/voronkovich/fitzgerald/dist/fitzgerald.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/voronkovich/fitzgerald/dist/fitzgerald-default-theme.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/voronkovich/fitzgerald/dist/fitzgerald.min.js"></script>
 ```
 
 ## Usage example
+
+Application:
+
+```js
+import createModal from 'fitzgerald'
+import 'fitzgerald/src/style.css'
+import 'fitzgerald/src/default-theme.css'
+
+const modal = createModal('Hey!')
+
+modal.show()
+```
 
 Browser:
 
@@ -55,17 +69,6 @@ const modal = Fitz.createModal('Hey!')
 
 modal.show()
 </script>
-```
-
-Application:
-
-```js
-import createModal from 'fitzgerald'
-import 'fitzgerald/src/style.css'
-
-const modal = createModal('Hey!')
-
-modal.show()
 ```
 
 ## Options
@@ -108,8 +111,8 @@ modal.show()
   // TailwindCSS
   const modal = createModal({
       class: {
-          backdrop: 'bg-purple-600 bg-opacity-100',
-          content: 'bg-gray-100 rounded-xl p-8',
+          backdrop: 'bg-purple-500 opacity-75',
+          content: 'bg-white shadow-2xl rounded-xl p-6 mx-4 md:w-1/2 xl:w-1/3 focus:outline-none',
       }
   })
   ```
