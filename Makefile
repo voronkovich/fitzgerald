@@ -1,5 +1,5 @@
 .PHONY: dist
-dist: dist/fitzgerald.min.js dist/fitzgerald.min.css
+dist: dist/fitzgerald.min.js dist/fitzgerald.min.css dist/fitzgerald-default-theme.min.css
 
 .PHONY: clean
 clean:
@@ -20,3 +20,10 @@ dist/fitzgerald.min.css:
 		--minify \
 		--outfile=dist/fitzgerald.min.css \
 		src/style.css
+
+dist/fitzgerald-default-theme.min.css:
+	npx esbuild \
+		--bundle \
+		--minify \
+		--outfile=dist/fitzgerald-default-theme.min.css \
+		src/default-theme.css \
