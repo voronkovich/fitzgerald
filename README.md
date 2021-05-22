@@ -34,7 +34,7 @@ yarn add fitzgerald
 And add imports:
 
 ```js
-import modal from 'fitzgerald'
+import createModal from 'fitzgerald'
 import 'fitzgerald/src/style.css'
 import 'fitzgerald/src/default-theme.css'
 ```
@@ -139,7 +139,7 @@ modal.show()
   ```
 * **style** `Object`
 
-  Configures the modal's style by adding CSS variables to it's root element. All available CSS variables can be found at [./src/style.css](src/style.css).
+  Configures the modal's style by adding CSS variables to it's root element. All available CSS variables can be found at [./src/style.css](src/style.css) and [./src/default-theme.css](src/default-theme.css).
 
   ```js
   const modal = createModal({
