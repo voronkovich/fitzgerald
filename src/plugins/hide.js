@@ -24,7 +24,11 @@ export default (modal, options) => {
     }
 
     if (opts.backdrop) {
-        modal.backdrop.addEventListener('click', modal.hide)
+        modal.root.addEventListener('click', (e) => {
+            if (!modal.content.contains(e.target)) {
+                modal.hide()
+            }
+        })
     }
 
     if (opts.escape) {

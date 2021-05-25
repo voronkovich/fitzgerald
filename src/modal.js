@@ -39,10 +39,21 @@ const createModalInstance = () => {
     const backdrop = document.createElement('div')
     backdrop.className = 'fitz-backdrop'
 
+    const container = document.createElement('div')
+    container.className = 'fitz-container'
+
+    const wrapper = document.createElement('div')
+    wrapper.className = 'fitz-wrapper'
+
     const content = document.createElement('div')
     content.className = 'fitz-content'
 
-    root.append(backdrop, content)
+    wrapper.append(content)
+
+    container.append(wrapper)
+
+    root.append(backdrop, container)
+
     root.style.visibility = 'hidden'
 
     const eventEmitter = createEventEmitter()
