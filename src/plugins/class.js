@@ -19,7 +19,8 @@ export default (modal, classes) => {
         }
 
         classes
-            .split(/\s/)
+            .trim()
+            .split(/\s+/)
             .forEach((className) => {
                 element.classList.add(className)
             })
