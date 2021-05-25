@@ -8,6 +8,7 @@ import focusPlugin from './plugins/focus.js'
 import hashPlugin from './plugins/hash.js'
 import hidePlugin from './plugins/hide.js'
 import idPlugin from './plugins/id.js'
+import lockScrollPlugin from './plugins/lockScroll.js'
 import mountPlugin from './plugins/mount.js'
 import positionPlugin from './plugins/position.js'
 import stylePlugin from './plugins/style.js'
@@ -53,6 +54,11 @@ const { createModal, usePlugin } = createModalFactory([
         key: 'id',
         callable: idPlugin,
         lazy: true,
+    },
+    {
+        key: 'lockScroll',
+        callable: lockScrollPlugin,
+        lazy: false,
     },
     {
         key: 'mount',

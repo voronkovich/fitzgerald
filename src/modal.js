@@ -65,6 +65,8 @@ const createModalInstance = () => {
     const modal = {
         root,
         backdrop,
+        container,
+        wrapper,
         content,
 
         ...eventEmitter,
