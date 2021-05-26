@@ -89,7 +89,7 @@ describe('Modal', () => {
             expect(promise1).toBe(promise2)
         })
 
-        it('emits event before showing modal', async () => {
+        it('emits event "show:before" before showing modal', async () => {
             const modal = createModal()
 
             let firedBefore = false
@@ -103,18 +103,37 @@ describe('Modal', () => {
             expect(firedBefore).toBe(true)
         })
 
-        it('emits event after showing modal', async () => {
+        it('emits event "show" after showing modal', async () => {
             const modal = createModal()
 
-            let firedAfter = false
+            let fired = false
 
             modal.on('show', () => {
-                firedAfter = modal.isVisible()
+                fired = modal.isVisible()
             })
 
             await modal.show()
 
-            expect(firedAfter).toBe(true)
+            expect(fired).toBe(true)
+        })
+
+        it('emits event "show:after" after showing modal', async () => {
+            const modal = createModal()
+
+            let fired = false
+
+            let firedShow = false
+            modal.on('show', () => {
+                firedShow = true
+            })
+
+            modal.on('show:after', () => {
+                fired = firedShow
+            })
+
+            await modal.show()
+
+            expect(fired).toBe(true)
         })
 
         it('throws an exception if modal is destroyed', async () => {
@@ -166,7 +185,7 @@ describe('Modal', () => {
             expect(promise1).toBe(promise2)
         })
 
-        it('emits event before hiding modal', async () => {
+        it('emits event "hide:before" before hiding modal', async () => {
             const modal = createModal()
 
             let firedBefore = false
@@ -182,7 +201,7 @@ describe('Modal', () => {
             expect(firedBefore).toBe(true)
         })
 
-        it('emits event after hiding modal', async () => {
+        it('emits event "hide" after hiding modal', async () => {
             const modal = createModal()
 
             let firedAfter = false
@@ -220,7 +239,7 @@ describe('Modal', () => {
     })
 
     describe('Destroy', () => {
-        it('emits event', async () => {
+        it('emits event "destroy"', async () => {
             const modal = createModal()
 
             let fired = false

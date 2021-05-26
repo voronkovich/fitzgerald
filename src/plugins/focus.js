@@ -16,7 +16,7 @@ export default (modal, focus) => {
     let restoreActiveElement = () => {}
     let destroyFocusTrap = () => {}
 
-    modal.on('show', () => {
+    modal.on('show:after', () => {
         restoreActiveElement = saveActiveElement()
 
         destroyFocusTrap = createFocusTrap(modal.root)

@@ -91,7 +91,11 @@ const createModalInstance = () => {
                 .then(() => {
                     modal.root.classList.add('fitz-visible')
 
-                    return eventEmitter.emit('show')
+                    return eventEmitter
+                        .emit('show')
+                        .then(() => {
+                            return eventEmitter.emit('show:after')
+                        })
                 })
                 .finally(() => {
                     showPromise = null

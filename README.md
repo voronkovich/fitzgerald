@@ -373,6 +373,10 @@ setTimeout(modal.hide, 5000)
 
   Occurs after the modal has been show.
 
+* `show:after`
+
+  Occurs after the modal has been show and all animations completed.
+
 * `hide:before`
 
   Occurs before hiding the modal.
