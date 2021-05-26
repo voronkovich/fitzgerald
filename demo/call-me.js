@@ -1,5 +1,8 @@
 const modal = Fitz.createModal({
-    class: 'call-me',
+    class: {
+        root: 'call-me animate__animated',
+        content: 'animate__animated',
+    },
     content: document.querySelector('#call-me-template'),
     hash: '#call-me',
     style: {
@@ -13,12 +16,12 @@ const modal = Fitz.createModal({
     },
     animate: {
         root: {
-            show: 'animate__animated animate__fadeIn',
-            hide: 'animate__animated animate__fadeOut',
+            show: 'animate__fadeIn',
+            hide: 'animate__fadeOut',
         },
         content: {
-            show: 'animate__animated animate__bounceInDown',
-            hide: 'animate__animated animate__fadeOutLeft',
+            show: 'animate__bounceInDown',
+            hide: 'animate__fadeOutLeft',
         },
         '[type=submit]': {
             show: 'animate__animated animate__slow animate__bounceInRight',

@@ -26,14 +26,12 @@ describe('Plugin "animate"', () => {
 
         const button = modal.content.querySelector('.btn')
 
-        let animationClass = ''
-        modal.on('show', () => {
-            animationClass = button.className
-        })
-
         await modal.show()
 
-        expect(animationClass).toBe('btn animate__animated animate__bounceInRight')
+        expect(button.className).toBe('btn animate__animated animate__bounceInRight')
+
+        await modal.hide()
+
         expect(button.className).toBe('btn')
     })
 
