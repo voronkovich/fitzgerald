@@ -12,9 +12,10 @@ Demo is available [here](https://voronkovich.github.io/fitzgerald/demo/).
 ## Features
 
 - Customization with CSS variables
-- Accessibility ([ARIA](https://www.w3.org/TR/wai-aria/))
+- Accessibility ([WAI-ARIA](https://www.w3.org/TR/wai-aria/))
 - [Focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7)
-- Animation (with [animate.css](https://github.com/animate-css/animate.css) and etc.)
+- Scroll locking (with [body-scroll-lock](https://github.com/willmcpo/body-scroll-lock))
+- Animations and transitions (with [animate.css](https://github.com/animate-css/animate.css), [animista](https://animista.net/) and etc.)
 - Custom plugins
 
 ## Installation
@@ -112,7 +113,13 @@ modal.show()
   const modal = createModal({
       class: {
           backdrop: 'bg-purple-500 opacity-75',
-          content: 'bg-white shadow-2xl rounded-xl p-6 mx-4 md:w-1/2 xl:w-1/3 focus:outline-none',
+          content: `
+              bg-white
+              shadow-2xl
+              rounded-xl
+              p-6 mx-4 md:w-1/2 xl:w-1/3
+              focus:outline-none
+          `,
       }
   })
   ```
@@ -211,7 +218,7 @@ modal.show()
   })
   ```
 
-* **focus** `string`
+* **focus** `string|HTMLElement`
 
   Sets a selector for an element which will be focused after the modal is showed.
 
@@ -226,6 +233,12 @@ modal.show()
       focus: 'input',
   })
   ```
+
+* **lockScroll** `string|HTMLElement`
+
+  Sets a selector for an element which will be used as a target for body scroll locking.
+
+  Default: `[data-fitz-lock-scroll]`
 
 * **aria** `Object`
 
@@ -307,7 +320,7 @@ modal.show()
 
 * **root** `HTMLElement`
 
-  Root element that wraps the backdrop and the modal content container.
+  Root element that wraps the backdrop and the modal's content container.
 
 * **backdrop** `HTMLElement`
 
@@ -315,7 +328,7 @@ modal.show()
 
 * **content** `HTMLElement`
 
-  Container for the modal content.
+  Container for the modal's content.
 
 You can use properties to interact with the modal DOM (attach event listeners, add nodes and etc.):
 
