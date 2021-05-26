@@ -1,27 +1,37 @@
-export default (modal, focus) => {
-    if (false === focus) {
+export default (modal, options = '[data-fitz-focus]') => {
+    if (false === options) {
         return
     }
 
-    focus = focus || '[data-fitz-focus]'
-
     modal.content.tabIndex = -1
 
-    const focusInitial = () => {
-        const element = modal.content.querySelector(focus) || modal.content
+    const getTargetElement = () => {
+        if (options instanceof HTMLElement) {
+            return options
+        }
 
-        element.focus()
+        if ('string' === typeof options) {
+            const element = modal.content.querySelector(options)
+
+            if (element) {
+                return element
+            }
+        }
+
+        return modal.content
     }
 
     let restoreActiveElement = () => {}
     let destroyFocusTrap = () => {}
 
-    modal.on('show:after', () => {
+    modal.on('show', () => {
         restoreActiveElement = saveActiveElement()
 
-        destroyFocusTrap = createFocusTrap(modal.root)
+        destroyFocusTrap = createFocusTrap(modal.content)
+    })
 
-        focusInitial()
+    modal.on('show:after', () => {
+        getTargetElement().focus()
     })
 
     modal.on('hide', () => {
@@ -83,17 +93,17 @@ const createFocusTrap = (node) => {
 }
 
 const queryTabbables = (node) => {
-    return node.querySelectorAll([
-        'a[href]',
-        'area[href]',
-        'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
-        'select:not([disabled]):not([aria-hidden])',
-        'textarea:not([disabled]):not([aria-hidden])',
-        'button:not([disabled]):not([aria-hidden])',
-        'iframe',
-        'object',
-        'embed',
-        '[contenteditable]',
-        '[tabindex]:not([tabindex^="-"])',
-    ].join(','))
+    return node.querySelectorAll(`
+        a[href],
+        area[href],
+        input:not([disabled]):not([type="hidden"]):not([aria-hidden]),
+        select:not([disabled]):not([aria-hidden]),
+        textarea:not([disabled]):not([aria-hidden]),
+        button:not([disabled]):not([aria-hidden]),
+        iframe,
+        object,
+        embed,
+        [contenteditable],
+        [tabindex]:not([tabindex^="-"])
+    `)
 }
