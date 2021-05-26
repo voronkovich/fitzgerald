@@ -54,8 +54,6 @@ const createModalInstance = () => {
 
     root.append(backdrop, container)
 
-    root.style.visibility = 'hidden'
-
     const eventEmitter = createEventEmitter()
 
     let showPromise = null
@@ -91,7 +89,7 @@ const createModalInstance = () => {
             showPromise = eventEmitter
                 .emit('show:before')
                 .then(() => {
-                    modal.root.style.visibility = 'visible'
+                    modal.root.classList.add('fitz-visible')
 
                     return eventEmitter.emit('show')
                 })
@@ -122,7 +120,7 @@ const createModalInstance = () => {
             hidePromise = eventEmitter
                 .emit('hide:before')
                 .then(() => {
-                    modal.root.style.visibility = 'hidden'
+                    modal.root.classList.remove('fitz-visible')
 
                     return eventEmitter.emit('hide')
                 })
@@ -134,11 +132,11 @@ const createModalInstance = () => {
         },
 
         isVisible: () => {
-            return modal.root.style.visibility === 'visible'
+            return modal.root.classList.contains('fitz-visible')
         },
 
         isHidden: () => {
-            return modal.root.style.visibility === 'hidden'
+            return !modal.isVisible()
         },
 
         isDestroyed: () => {

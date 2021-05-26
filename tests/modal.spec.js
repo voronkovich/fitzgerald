@@ -75,7 +75,7 @@ describe('Modal', () => {
 
             await modal.show()
 
-            expect(modal.root.style.visibility).toBe('visible')
+            expect(modal.root.classList.contains('fitz-visible')).toBe(true)
             expect(modal.isVisible()).toBe(true)
             expect(modal.isHidden()).toBe(false)
         })
@@ -150,7 +150,7 @@ describe('Modal', () => {
 
             await modal.hide()
 
-            expect(modal.root.style.visibility).toBe('hidden')
+            expect(modal.root.classList.contains('fitz-visible')).toBe(false)
             expect(modal.isVisible()).toBe(false)
             expect(modal.isHidden()).toBe(true)
         })

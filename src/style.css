@@ -1,5 +1,10 @@
 .fitz {
     position: fixed;
+    visibility: hidden;
+}
+
+.fitz-visible {
+    visibility: visible;
 }
 
 .fitz-backdrop {
