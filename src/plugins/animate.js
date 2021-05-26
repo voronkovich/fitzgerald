@@ -1,3 +1,5 @@
+import { parseCSSClasses } from '../utils.js'
+
 export default (modal, options) => {
     if (false === options) {
         return
@@ -15,7 +17,7 @@ export default (modal, options) => {
 }
 
 const animateShow = (modal, key, classes) => {
-    classes = classes.split(/\s/)
+    classes = parseCSSClasses(classes)
 
     modal.on('show', () => {
         const element = modal[key] || modal.root.querySelector(key)
@@ -43,7 +45,7 @@ const animateShow = (modal, key, classes) => {
 }
 
 const animateHide = (modal, key, classes) => {
-    classes = classes.split(/\s/)
+    classes = parseCSSClasses(classes)
 
     modal.on('hide:before', () => {
         const element = modal[key] || modal.root.querySelector(key)

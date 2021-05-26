@@ -1,3 +1,5 @@
+import { parseCSSClasses } from '../utils.js'
+
 export default (modal, classes) => {
     if (false === classes) {
         return
@@ -18,9 +20,7 @@ export default (modal, classes) => {
             throw Error(`Couldn't set class for "${key}" element because it not exists.`)
         }
 
-        classes
-            .trim()
-            .split(/\s+/)
+        parseCSSClasses(classes)
             .forEach((className) => {
                 element.classList.add(className)
             })
