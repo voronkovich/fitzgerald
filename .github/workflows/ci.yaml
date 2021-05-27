@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
-            - run: npm install
+            - run: npm ci
             - run: npm run coverage
             - uses: coverallsapp/github-action@master
               with:
@@ -16,5 +16,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
-            - run: npm install
+            - run: npm ci
             - run: npm run lint

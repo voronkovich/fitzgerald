@@ -1,3 +1,17 @@
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+}
+
+body > div.row {
+    min-height: 100%;
+    max-width: 640px !important;
+    margin: 0 auto !important;
+}
+
 :root {
     --fitz-hide-margin: -0.2em 0;
     --fitz-padding: 1.5rem;
