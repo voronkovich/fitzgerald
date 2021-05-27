@@ -70,7 +70,7 @@ describe('Modal', () => {
     })
 
     describe('Show', () => {
-        it('shows modal', async () => {
+        it('makes modal visible', async () => {
             const modal = createModal()
 
             await modal.show()
@@ -78,6 +78,14 @@ describe('Modal', () => {
             expect(modal.root.classList.contains('fitz-visible')).toBe(true)
             expect(modal.isVisible()).toBe(true)
             expect(modal.isHidden()).toBe(false)
+        })
+
+        it('adds ".fitz-visible" class', async () => {
+            const modal = createModal()
+
+            await modal.show()
+
+            expect(modal.root.classList.contains('fitz-visible')).toBe(true)
         })
 
         it('returns the same promise instance while showing process is not completed', () => {
@@ -160,18 +168,42 @@ describe('Modal', () => {
     })
 
     describe('Hide', () => {
-        it('hides modal', async () => {
+        it('makes modal invisible', async () => {
             const modal = createModal()
 
             await modal.show()
 
-            expect(modal.isVisible()).toBe(true)
+            await modal.hide()
+
+            expect(modal.isVisible()).toBe(false)
+            expect(modal.isHidden()).toBe(true)
+        })
+
+        it('removes ".fitz-visible" class', async () => {
+            const modal = createModal()
+
+            await modal.show()
 
             await modal.hide()
 
             expect(modal.root.classList.contains('fitz-visible')).toBe(false)
-            expect(modal.isVisible()).toBe(false)
-            expect(modal.isHidden()).toBe(true)
+        })
+
+        it('adds ".fitz-hiding" class while modal is hiding', async () => {
+            const modal = createModal()
+
+            let classAdded = false
+
+            modal.on('hide:before', () => {
+                classAdded = modal.root.classList.contains('fitz-hiding')
+            })
+
+            await modal.show()
+
+            await modal.hide()
+
+            expect(classAdded).toBe(true)
+            expect(modal.root.classList.contains('fitz-hiding')).toBe(false)
         })
 
         it('returns the same promise instance while hiding process is not completed', async () => {
@@ -201,7 +233,7 @@ describe('Modal', () => {
             expect(firedBefore).toBe(true)
         })
 
-        it('emits event "hide" after hiding modal', async () => {
+        it('emits event "hide" after modal is being hidden', async () => {
             const modal = createModal()
 
             let firedAfter = false
@@ -215,23 +247,6 @@ describe('Modal', () => {
             await modal.hide()
 
             expect(firedAfter).toBe(true)
-        })
-
-        it('adds ".fitz-hiding" class while modal is hiding', async () => {
-            const modal = createModal()
-
-            let classAdded = false
-
-            modal.on('hide:before', () => {
-                classAdded = modal.root.classList.contains('fitz-hiding')
-            })
-
-            await modal.show()
-
-            await modal.hide()
-
-            expect(classAdded).toBe(true)
-            expect(modal.root.classList.contains('fitz-hiding')).toBe(false)
         })
 
         it('throws an exception if modal is destroyed', async () => {
