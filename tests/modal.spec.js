@@ -217,6 +217,23 @@ describe('Modal', () => {
             expect(firedAfter).toBe(true)
         })
 
+        it('adds ".fitz-hiding" class while modal is hiding', async () => {
+            const modal = createModal()
+
+            let classAdded = false
+
+            modal.on('hide:before', () => {
+                classAdded = modal.root.classList.contains('fitz-hiding')
+            })
+
+            await modal.show()
+
+            await modal.hide()
+
+            expect(classAdded).toBe(true)
+            expect(modal.root.classList.contains('fitz-hiding')).toBe(false)
+        })
+
         it('throws an exception if modal is destroyed', async () => {
             const modal = createModal()
 

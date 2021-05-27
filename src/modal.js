@@ -121,10 +121,12 @@ const createModalInstance = () => {
                 return Promise.resolve()
             }
 
+            modal.root.classList.add('fitz-hiding')
+
             hidePromise = eventEmitter
                 .emit('hide:before')
                 .then(() => {
-                    modal.root.classList.remove('fitz-visible')
+                    modal.root.classList.remove('fitz-visible', 'fitz-hiding')
 
                     return eventEmitter.emit('hide')
                 })
