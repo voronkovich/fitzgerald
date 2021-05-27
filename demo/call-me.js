@@ -6,8 +6,9 @@ const modal = Fitz.createModal({
     content: document.querySelector('#call-me-template'),
     hash: '#call-me',
     style: {
-        backdropOpacity: 0.7,
-        backdropBackground: '#000000',
+        // backdropOpacity: 0.9,
+        // backdropBackground: '#000000',
+        // transitionDuration: '250ms',
     },
     focus: 'input',
     aria: {
@@ -15,17 +16,17 @@ const modal = Fitz.createModal({
         describedBy: 'header p',
     },
     animate: {
-        root: {
-            show: 'animate__fadeIn',
-            hide: 'animate__fadeOut',
-        },
-        content: {
-            show: 'animate__bounceInDown',
-            hide: 'animate__fadeOutLeft',
-        },
-        '[type=submit]': {
-            show: 'animate__animated animate__slow animate__bounceInRight',
-        },
+        // root: {
+        //     show: 'animate__fadeIn',
+        //     hide: 'animate__fadeOut',
+        // },
+        // content: {
+        //     show: 'animate__bounceInDown',
+        //     hide: 'animate__fadeOutLeft',
+        // },
+        // '[type=submit]': {
+        //     show: 'animate__animated animate__slow animate__bounceInRight',
+        // },
     }
 })
 
