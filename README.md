@@ -5,18 +5,18 @@
 [![Package Version](https://img.shields.io/npm/v/fitzgerald.svg)](https://www.npmjs.com/package/fitzgerald)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
-[Fitzgerald](https://www.npmjs.com/package/fitzgerald) (or just Fitz) is a minimalist [modal window](https://en.wikipedia.org/wiki/Modal_window) for the browser implemented in pure JavaScript and CSS. It is fully customizable with [options](#options), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) and [plugins](https://github.com/voronkovich/fitzgerald/tree/master/src/plugins).
+[Fitzgerald](https://en.wikipedia.org/wiki/12_oz._Mouse#Premise) (or just Fitz) is a minimalist [modal window](https://en.wikipedia.org/wiki/Modal_window) for the browser implemented in pure JavaScript and CSS.
 
-Demo is available [here](https://voronkovich.github.io/fitzgerald/demo/).
+Demo is available [here](https://voronkovich.github.io/fitzgerald/demo/) and [here](https://voronkovich.github.io/fitzgerald-vue/demo/dist/) (Vue).
 
 ## Features
 
-- Customization with CSS variables
+- Customization with [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
 - Accessibility ([WAI-ARIA](https://www.w3.org/TR/wai-aria/))
 - [Focus trap](https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-7)
 - Scroll locking (with [body-scroll-lock](https://github.com/willmcpo/body-scroll-lock))
-- Animations and transitions (with [animate.css](https://github.com/animate-css/animate.css), [animista](https://animista.net/) and etc.)
-- Custom plugins
+- Animations and transitions (with [animate.css](https://animate.style/), [animista](https://animista.net/) and etc.)
+- [Plugin](./src/plugins) based architecture
 
 ## Installation
 
