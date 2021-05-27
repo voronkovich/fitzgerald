@@ -5,16 +5,6 @@ export default (modal, options) => {
         return
     }
 
-    for (const [key, opts]  of Object.entries(options)) {
-        if (opts.show) {
-            animateShow(modal, key, opts.show)
-        }
-
-        if (opts.hide) {
-            animateHide(modal, key, opts.hide)
-        }
-    }
-
     const waitElements = [
         modal.root,
         modal.backdrop,
@@ -24,6 +14,20 @@ export default (modal, options) => {
     modal.on('hide:before', () => {
         return Promise.allSettled(waitElements.map(waitAnimationsFinished))
     })
+
+    if ('object' !== typeof options) {
+        return
+    }
+
+    for (const [key, opts] of Object.entries(options)) {
+        if (opts.show) {
+            animateShow(modal, key, opts.show)
+        }
+
+        if (opts.hide) {
+            animateHide(modal, key, opts.hide)
+        }
+    }
 }
 
 const animateShow = (modal, key, classes) => {

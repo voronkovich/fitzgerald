@@ -18,7 +18,7 @@ const { createModal, usePlugin } = createModalFactory([
     {
         key: 'animate',
         callable: animatePlugin,
-        lazy: true,
+        lazy: false,
     },
     {
         key: 'aria',
