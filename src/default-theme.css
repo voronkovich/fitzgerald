@@ -1,6 +1,15 @@
+.fitz {
+    transition: opacity var(--fitz-transition-duration, 0.5s) ease-in-out;
+    opacity: 0;
+}
+
+.fitz-visible:not(.fitz-hiding) {
+    opacity: 1;
+}
+
 .fitz-backdrop {
     background: var(--fitz-backdrop-background, black);
-    opacity: var(--fitz-backdrop-opacity, 0.5);
+    opacity: var(--fitz-backdrop-opacity, 0.75);
 }
 
 .fitz-content {
@@ -8,9 +17,9 @@
     height: var(--fitz-height, auto);
     min-width: var(--fitz-min-width, auto);
     min-height: var(--fitz-min-height, auto);
-    max-height: var(--fitz-max-height, 90%);
-    max-width: var(--fitz-max-width, 86%);
-    margin: var(--fitz-margin, 0);
+    max-height: var(--fitz-max-height, auto);
+    max-width: var(--fitz-max-width, auto);
+    margin: var(--fitz-margin, 2vh);
     padding: var(--fitz-padding, 1rem 1rem);
     background-clip: padding-box;
     background: var(--fitz-background, white);
