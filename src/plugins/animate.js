@@ -14,6 +14,16 @@ export default (modal, options) => {
             animateHide(modal, key, opts.hide)
         }
     }
+
+    const waitElements = [
+        modal.root,
+        modal.backdrop,
+        modal.content,
+    ]
+
+    modal.on('hide:before', () => {
+        return Promise.allSettled(waitElements.map(waitAnimationsFinished))
+    })
 }
 
 const animateShow = (modal, key, classes) => {
