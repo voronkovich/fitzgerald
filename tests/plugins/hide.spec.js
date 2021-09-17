@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import plugin from '../../src/plugins/hide.js'
 import { createModalFactory } from '../../src/modal.js'
 

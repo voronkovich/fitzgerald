@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import plugin from '../../src/plugins/focus.js'
 import { createModalFactory } from '../../src/modal.js'
 

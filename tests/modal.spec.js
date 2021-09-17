@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { createModalFactory } from '../src/modal.js'
 
 describe('createModalFactory', () => {
