@@ -1,7 +1,7 @@
 # Fitzgerald
 
 [![CI](https://github.com/voronkovich/fitzgerald/actions/workflows/ci.yaml/badge.svg)](https://github.com/voronkovich/fitzgerald/actions/workflows/ci.yaml)
-[![Coverage Status](https://coveralls.io/repos/github/voronkovich/fitzgerald/badge.svg?branch=master)](https://coveralls.io/github/voronkovich/fitzgerald?branch=master)
+[![Coverage Status](https://codecov.io/gh/voronkovich/fitzgerald/branch/master/graph/badge.svg?token=4X2F3TCQD7)](https://codecov.io/gh/voronkovich/fitzgerald)
 [![Package Version](https://img.shields.io/npm/v/fitzgerald.svg)](https://www.npmjs.com/package/fitzgerald)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
