@@ -59,4 +59,25 @@ describe('Plugin "content"', () => {
 
         expect(modal.content.innerHTML).toBe('Dolor sit amet')
     })
+
+    it('allows to change modal content', () => {
+        document.body.innerHTML = `
+            <h1>Lorem ipsum</h1>
+            <template class="modal-1">
+                <h1>Modal 1</h1>
+                <p>Modal 1</p>
+            </template>
+            <template class="modal-2">Modal 2</template>
+        `
+
+        const modal = createModal({
+            content: document.querySelector('.modal-1')
+        })
+
+        modal.setContent(document.querySelector('.modal-2'))
+        expect(modal.content.innerHTML).toBe('Modal 2')
+
+        modal.setContent('<h1>Modal 3</h1>')
+        expect(modal.content.innerHTML).toBe('<h1>Modal 3</h1>')
+    })
 })

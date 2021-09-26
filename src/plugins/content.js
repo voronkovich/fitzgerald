@@ -37,7 +37,9 @@ const setElementContent = (element, content) => {
 }
 
 const replaceChildren = (node, ...childs) => {
-    node.childNodes.forEach(child => node.removeChild(child))
+    while (node.firstChild) {
+        node.removeChild(node.firstChild)
+    }
 
     childs.forEach(child => node.appendChild(child))
 }
