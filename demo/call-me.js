@@ -34,5 +34,7 @@
         modal.content.querySelector('header p').textContent = `
             Thank you, ${name}! We will call you at ${phone} as soon as possible.
         `
+
+        modal.setFocus()
     }, { once: true })
 }())
