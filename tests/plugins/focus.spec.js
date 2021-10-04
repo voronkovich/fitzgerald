@@ -89,6 +89,35 @@ describe('Plugin "focus"', () => {
 
             expect(document.activeElement).toBe(fullNameInput)
         })
+
+        it('by calling setFocus() method', async () => {
+            const modal = createModal()
+
+            modal.content.innerHTML = `
+                <h2>Subscribe</h2>
+                <form>
+                    <label>
+                        Full name: <input type="text" name="name" />
+                    </label>
+                    <label>
+                        Email: <input type="email" name="email" />
+                    </label>
+                    <button type="submit">Subscribe</button>
+                </form>
+            `
+
+            document.body.appendChild(modal.root)
+
+            await modal.show()
+
+            const submit = modal.content.querySelector('[type="submit"]')
+
+            expect(document.activeElement).not.toBe(submit)
+
+            modal.setFocus('[type="submit"]')
+
+            expect(document.activeElement).toBe(submit)
+        })
     })
 
     it('restores previous active element after modal has been hidden', async () => {

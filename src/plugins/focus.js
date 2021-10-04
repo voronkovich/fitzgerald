@@ -5,20 +5,24 @@ export default (modal, options = '[data-fitz-focus]') => {
 
     modal.content.tabIndex = -1
 
-    const getTargetElement = () => {
-        if (options instanceof HTMLElement) {
-            return options
+    const getFocusElement = (element = options) => {
+        if (element instanceof HTMLElement) {
+            return element
         }
 
-        if ('string' === typeof options) {
-            const element = modal.content.querySelector(options)
+        if ('string' === typeof element) {
+            const focusElement = modal.content.querySelector(element)
 
-            if (element) {
-                return element
+            if (focusElement) {
+                return focusElement
             }
         }
 
         return modal.content
+    }
+
+    modal.setFocus = (element) => {
+        getFocusElement(element).focus()
     }
 
     let restoreActiveElement = () => {}
@@ -30,9 +34,7 @@ export default (modal, options = '[data-fitz-focus]') => {
         destroyFocusTrap = createFocusTrap(modal.content)
     })
 
-    modal.on('show:after', () => {
-        getTargetElement().focus()
-    })
+    modal.on('show:after', modal.setFocus)
 
     modal.on('hide', () => {
         restoreActiveElement()
