@@ -14,7 +14,13 @@ export default (modal, content) => {
     }
 }
 
-const setElementContent = (element, content) => {
+/**
+ * Sets an element's content.
+ *
+ * @param {Element} element
+ * @param {string|Node|HTMLTemplateElement|null} [content]
+ */
+export const setElementContent = (element, content) => {
     if ( 'undefined' === typeof content || null === content) {
         replaceChildren(element)
 
