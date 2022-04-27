@@ -18,7 +18,7 @@ export default (modal, content) => {
  * Sets an element's content.
  *
  * @param {Element} element
- * @param {string|Node|HTMLTemplateElement|null} [content]
+ * @param {string|HTMLTemplateElement|NodeList|Node|null} [content]
  */
 export const setElementContent = (element, content) => {
     if ( 'undefined' === typeof content || null === content) {
@@ -35,6 +35,12 @@ export const setElementContent = (element, content) => {
 
     if (content.content instanceof DocumentFragment) {
         replaceChildren(element, content.content.cloneNode(true))
+
+        return
+    }
+
+    if (content instanceof NodeList) {
+        replaceChildren(element, ...content)
 
         return
     }

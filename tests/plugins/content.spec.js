@@ -47,6 +47,19 @@ describe('Plugin "content"', () => {
         expect(modal.content.innerHTML).toBe('<div class="modal">Dolor sit amet</div>')
     })
 
+    it('allows to set modal content as NodeList instance', () => {
+        document.body.innerHTML = `
+            <h1>Lorem ipsum</h1>
+            <div class="modal"><span>Dolor sit</span><span>Amet</span></div>
+        `
+
+        const modal = createModal({
+            content: document.querySelector('.modal').childNodes,
+        })
+
+        expect(modal.content.innerHTML).toBe('<span>Dolor sit</span><span>Amet</span>')
+    })
+
     it('allows to set modal content as HTMLTemplate instance', () => {
         document.body.innerHTML = `
             <h1>Lorem ipsum</h1>
