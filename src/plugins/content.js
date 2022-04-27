@@ -1,16 +1,33 @@
-export default (modal, content) => {
-    if (false === content) {
+export default (modal, options) => {
+    if (false === options) {
         return
     }
 
+    if (typeof options === 'string' || options instanceof Node || options instanceof NodeList) {
+        options = {
+            content: options,
+        }
+    }
+
+    const opts = Object.assign({
+        content: null,
+        contentSelector: '[data-fitz-content]',
+    }, options)
+
     modal.setContent = (content) => {
-        setElementContent(modal.content, content)
+        let contentElement = modal.content.querySelector(opts.contentSelector)
+
+        if (!contentElement) {
+            contentElement = modal.content
+        }
+
+        setElementContent(contentElement, content)
 
         return modal
     }
 
-    if (content) {
-        modal.setContent(content)
+    if (opts.content) {
+        modal.setContent(opts.content)
     }
 }
 
