@@ -93,6 +93,19 @@ modal.show()
   })
   ```
 
+* **mount** `string|HTMLElement|DocumentFragment`
+
+  Sets an element to which the modal will be mounted.
+
+  Default: `document.body`
+
+  ```js
+  const modal = createModal({
+      content: 'Hey!',
+      mount: '.modals',
+  })
+  ```
+
 * **id** `string`
 
   Sets an HTML attribute `id` for the modal.
