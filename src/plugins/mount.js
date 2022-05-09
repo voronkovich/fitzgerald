@@ -12,8 +12,8 @@ export default (modal, element = document.body) => {
             throw Error(`Mount element "${element}" not found.`)
         }
     } else {
-        if (!(element instanceof Element)) {
-            throw Error('Mount element must be instance of "Element".')
+        if (!(element instanceof HTMLElement || element instanceof DocumentFragment)) {
+            throw Error('Mount element must be instance of "HTMLElement" or "DocumentFragment".')
         }
     }
 

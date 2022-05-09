@@ -40,6 +40,16 @@ describe('Plugin "mount"', () => {
         expect(mountElement.lastElementChild).toBe(modal.root)
     })
 
+    it('allows to use document fragment for mounting', () => {
+        const fragment = document.createDocumentFragment()
+
+        const modal = createModal({
+            mount: fragment
+        })
+
+        expect(fragment.lastElementChild).toBe(modal.root)
+    })
+
     it('throws exception if mount element not exists', () => {
         expect(() => {
             createModal({
@@ -53,7 +63,7 @@ describe('Plugin "mount"', () => {
             createModal({
                 mount: []
             })
-        }).toThrow('Mount element must be instance of "Element".')
+        }).toThrow('Mount element must be instance of "HTMLElement" or "DocumentFragment".')
     })
 
     it('removes modal from DOM after modal has been destroyed', async () => {
