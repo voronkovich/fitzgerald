@@ -95,7 +95,27 @@ const createFocusTrap = (node) => {
 }
 
 const queryTabbables = (node) => {
-    return node.querySelectorAll(tabbableSelector)
+    return nodeQuerySelectorAll(node, tabbableSelector)
+}
+
+const nodeQuerySelectorAll = (node, selector) => {
+    const result = Array.from(node.querySelectorAll(selector))
+
+    const slots = node.querySelectorAll('slot')
+
+    for (const slot of slots) {
+        for (const assignedElement of slot.assignedElements()) {
+            if (assignedElement.matches(selector)) {
+                result.push(assignedElement)
+            }
+
+            assignedElement.querySelectorAll(tabbableSelector).forEach(item => {
+                result.push(item)
+            })
+        }
+    }
+
+    return result
 }
 
 const tabbableSelector = [
