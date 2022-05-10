@@ -25,7 +25,7 @@ export default (modal, options) => {
 
     if (opts.backdrop) {
         modal.root.addEventListener('click', (e) => {
-            if (!modal.content.contains(e.target)) {
+            if (!nodeContains(modal.content, e.target)) {
                 modal.hide()
             }
         })
@@ -38,4 +38,22 @@ export default (modal, options) => {
             }
         })
     }
+}
+
+const nodeContains = (node, needle) => {
+    if (node.contains(needle)) {
+        return true
+    }
+
+    const slots = node.querySelectorAll('slot')
+
+    for (const slot of slots) {
+        for (const assignedNode of slot.assignedNodes()) {
+            if (assignedNode.contains(needle)) {
+                return true
+            }
+        }
+    }
+
+    return false
 }
